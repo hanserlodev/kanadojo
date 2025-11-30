@@ -2,8 +2,8 @@
 import { createElement, useEffect, useRef } from 'react';
 import themeSets, {
   applyTheme,
-  applyThemeObject,
-  hexToHsl
+  applyThemeObject
+  // hexToHsl
 } from '@/features/Preferences/data/themes';
 import usePreferencesStore from '@/features/Preferences';
 import clsx from 'clsx';
@@ -56,7 +56,7 @@ const Themes = () => {
       applyTheme(themeId);
     }, 150);
   };
-
+  /* 
   const handleCustomTheme = () => {
     // To keep the id same as the others themes (default)
     const themeId = customTheme.id.replaceAll(' ', '-').toLowerCase();
@@ -64,11 +64,13 @@ const Themes = () => {
     if (themeId !== '') {
       addTheme({
         id: themeId,
+
         backgroundColor: hexToHsl(customTheme.backgroundColor),
         cardColor: hexToHsl(customTheme.cardColor),
         borderColor: hexToHsl(customTheme.borderColor),
         mainColor: hexToHsl(customTheme.mainColor),
         secondaryColor: hexToHsl(customTheme.secondaryColor)
+
       });
 
       // setSelectedTheme(themeId);
@@ -84,7 +86,7 @@ const Themes = () => {
       setIsAdding(false);
     }
   };
-
+ */
   useEffect(() => {
     setIsMounted(true);
     console.log(isMounted);
@@ -239,7 +241,8 @@ const Themes = () => {
       ))}
 
       {/* Custom Themes */}
-      <div>
+
+      {/* <div>
         <div className='flex items-center justify-between mb-3'>
           <h4 className='text-lg font-semibold'>Your Custom Themes</h4>
           {!isAdding && (
@@ -258,7 +261,7 @@ const Themes = () => {
           )}
         </div>
         {/* Add theme form */}
-        {isAdding && (
+      {/* {isAdding && (
           <div
             className={clsx(
               'mb-4 p-4 rounded-xl border-2',
@@ -446,9 +449,9 @@ const Themes = () => {
               </p>
             </div>
           </div>
-        )}
-        {/* Custom themes list */}
-        {themes.length > 0 ? (
+        )} */}
+      {/* Custom themes list */}
+      {/* {themes.length > 0 ? (
           <fieldset
             className={clsx(
               'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'
@@ -560,7 +563,7 @@ const Themes = () => {
             No custom themes yet. Create one to get started!
           </p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
