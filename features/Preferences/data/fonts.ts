@@ -1,10 +1,16 @@
 // Conditional font loading based on environment
-// This file acts as a router to prevent font compilation in development
+// In development, we skip font loading to improve performance
+// In production, we load the full font definitions
 
-// Use the appropriate fonts file based on environment
-const fonts =
-  process.env.NODE_ENV === 'production'
-    ? require('./fonts.prod').default
-    : require('./fonts.dev').default;
+type FontConfig = {
+  name: string;
+  font: {
+    className: string;
+  };
+};
+
+// Use the appropriate fonts based on environment
+const fonts: FontConfig[] =
+  process.env.NODE_ENV === 'production' ? require('./fonts.prod').default : []; // Empty array in development to avoid Next.js font compilation
 
 export default fonts;
