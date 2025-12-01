@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   reactStrictMode: false, // Disable in dev for faster startup (enable in production)
 
+  // Disable instrumentation in development
+  instrumentationHook: process.env.NODE_ENV === 'production',
+
   // Compiler optimizations
   compiler: {
     removeConsole:
@@ -33,8 +36,7 @@ const nextConfig: NextConfig = {
   },
 
   // Reduce overhead in development
-  devIndicators: {
-  },
+  devIndicators: {},
 
   // Optimize images
   images: {

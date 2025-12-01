@@ -49,6 +49,11 @@ let fontsCache: DecorationFont[] | null = null;
 let fontsLoadingPromise: Promise<DecorationFont[]> | null = null;
 
 const loadDecorationFonts = async (): Promise<DecorationFont[]> => {
+  // Only load decoration fonts in production
+  if (process.env.NODE_ENV !== 'production') {
+    return [];
+  }
+
   if (fontsCache) return fontsCache;
   if (fontsLoadingPromise) return fontsLoadingPromise;
 

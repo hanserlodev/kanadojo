@@ -294,7 +294,7 @@ const MainMenu = () => {
             <Link
               href={link.href}
               key={i}
-              className='hover:cursor-pointer flex flex-row gap-1 items-center text-[var(--secondary-color)] hover:text-[var(--main-color)] duration-250 active:scale-100 active:duration-225'
+              className='hover:cursor-pointer flex flex-row gap-1 items-center text-[var(--secondary-color)] hover:text-[var(--main-color)]'
               onClick={() => playClick()}
             >
               <link.icon className='size-4' />

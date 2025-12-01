@@ -1,14 +1,12 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronUp } from 'lucide-react';
+import { ChevronsUp } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useTranslations } from 'next-intl';
 
 export default function BackToTop() {
   const { playClick } = useClick();
-  const t = useTranslations('common');
 
   const [visible, setVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -58,24 +56,18 @@ export default function BackToTop() {
     }
   };
 
-  const backToTopLabel = t('actions.backToTop');
-
   return (
     <button
-      aria-label={backToTopLabel}
-      title={backToTopLabel}
       onClick={handleClick}
       className={clsx(
-        'fixed z-[60] right-2 bottom-18 sm:right-8 sm:bottom-8',
+        'fixed z-[60] right-2 bottom-18 sm:right-7 sm:bottom-9',
         'inline-flex items-center justify-center rounded-full ',
-        'p-2 shadow-lg transition-all duration-200 ',
+        'p-2 md:p-3 shadow-lg transition-all duration-200 ',
         'bg-[var(--card-color)] text-[var(--main-color)] ',
-        'hover:bg-[var(--border-color)] hover:scale-110 ',
-        // 'focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] focus:ring-offset-2 ',
-        'border-2 border-[var(--border-color)]'
+        'hover:bg-[var(--main-color)] hover:text-[var(--background-color)]'
       )}
     >
-      <ChevronUp size={28} strokeWidth={2.5} />
+      <ChevronsUp size={32} strokeWidth={2.5}  />
     </button>
   );
 }
