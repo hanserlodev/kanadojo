@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { Link } from '@/core/i18n/routing';
-import { useClick, useCssVariable } from '@/shared/hooks';
+import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import { useStopwatch } from 'react-timer-hook';
 import useStatsStore from '@/features/Progress';
 import {
@@ -17,7 +17,6 @@ import {
   type LucideIcon
 } from 'lucide-react';
 import ProgressBar from './ProgressBar';
-import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 // Game mode icon configuration
 const GAME_MODE_ICONS: Record<
@@ -51,7 +50,7 @@ interface ReturnProps {
 const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
   const totalTimeStopwatch = useStopwatch({ autoStart: false });
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
-  const mainColor = useCssVariable('--main-color');
+  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const saveSession = useStatsStore(s => s.saveSession);
   const numCorrectAnswers = useStatsStore(s => s.numCorrectAnswers);
@@ -140,11 +139,7 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
               'bg-[var(--main-color)]',
               'text-[var(--background-color)]'
             )}
-            style={{
-              borderColor: mainColor
-                ? generateButtonBorderColor(mainColor)
-                : undefined
-            }}
+            style={{ borderColor: mainBorderColor || undefined }}
             onClick={handleShowStats}
           >
             <ChartSpline size={24} />

@@ -5,13 +5,12 @@ import { chunkArray } from '@/shared/lib';
 import { useState, useMemo, useEffect } from 'react';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import useGridColumns from '@/shared/hooks/useGridColumns';
-import { useClick, useCssVariable } from '@/shared/hooks';
+import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useStatsStore from '@/features/Progress';
 import KanjiSetDictionary from '@/features/Kanji/components/SetDictionary';
 import type { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 //triggering vercel redeployment
 
 type RawKanjiEntry = {
@@ -50,7 +49,7 @@ type KanjiCollectionMeta = {
 // ✅ REMOVED: Intersection Observer animation variants to fix bug where users need to scroll to see first sets
 
 const KanjiCards = () => {
-  const secondaryColor = useCssVariable('--secondary-color');
+  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
   const selectedKanjiCollectionName = useKanjiStore(
     state => state.selectedKanjiCollection
   );
@@ -323,11 +322,8 @@ const KanjiCards = () => {
                             : 'bg-[var(--background-color)] border-[var(--border-color)] hover:border-[var(--main-color)]/80'
                         )}
                         style={
-                          isSelected && secondaryColor
-                            ? {
-                                borderColor:
-                                  generateButtonBorderColor(secondaryColor)
-                              }
+                          isSelected
+                            ? { borderColor: secondaryBorderColor || undefined }
                             : undefined
                         }
                         onClick={e => {

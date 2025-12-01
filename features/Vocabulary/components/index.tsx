@@ -5,13 +5,12 @@ import { chunkArray } from '@/shared/lib';
 import { useState, useMemo, useEffect } from 'react';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import useGridColumns from '@/shared/hooks/useGridColumns';
-import { useClick, useCssVariable } from '@/shared/hooks';
+import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import useStatsStore from '@/features/Progress';
 import VocabSetDictionary from '@/features/Vocabulary/components/SetDictionary';
 import { IWord } from '@/shared/types';
-import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 type RawVocabEntry = {
   jmdict_seq: string;
@@ -68,7 +67,7 @@ const toWordObj = (entry: RawVocabEntry): IWord => {
 // ✅ REMOVED: Intersection Observer animation variants to fix bug where users need to scroll to see first sets
 
 const VocabCards = () => {
-  const secondaryColor = useCssVariable('--secondary-color');
+  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
   const selectedVocabCollectionName = useVocabStore(
     state => state.selectedVocabCollection
   );
@@ -329,11 +328,8 @@ const VocabCards = () => {
                             : 'bg-[var(--background-color)] border-[var(--border-color)] hover:border-[var(--main-color)]/80'
                         )}
                         style={
-                          isSelected && secondaryColor
-                            ? {
-                                borderColor:
-                                  generateButtonBorderColor(secondaryColor)
-                              }
+                          isSelected
+                            ? { borderColor: secondaryBorderColor || undefined }
                             : undefined
                         }
                         onClick={e => {

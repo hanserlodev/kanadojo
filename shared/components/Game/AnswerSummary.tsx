@@ -4,7 +4,7 @@ import { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
 import { IVocabObj } from '@/features/Vocabulary/store/useVocabStore';
 import { CircleArrowRight } from 'lucide-react';
 import { Dispatch, SetStateAction, useRef, useEffect } from 'react';
-import { useClick } from '@/shared/hooks';
+import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import FuriganaText from '@/shared/components/FuriganaText';
 import usePreferencesStore from '@/features/Preferences';
 
@@ -28,35 +28,40 @@ const ContinueButton = ({
   buttonRef: React.RefObject<HTMLButtonElement | null>;
   onClick: () => void;
   disabled: boolean;
-}) => (
-  <div
-    className={clsx(
-      'w-[100vw]',
-      'border-t-1 border-[var(--border-color)] bg-[var(--card-color)]',
-      'absolute bottom-0 md:bottom-6 z-10 py-4 px-4',
-      'flex justify-center items-center'
-    )}
-  >
-    <button
-      ref={buttonRef}
+}) => {
+  const mainBorderColor = useButtonBorderColor('--main-color');
+
+  return (
+    <div
       className={clsx(
-        'text-xl font-medium py-4 px-16 rounded-3xl duration-250 hover:cursor-pointer',
-
-        'w-full md:w-1/2',
-
-        // buttonBorderStyles,
-        'flex flex-row justify-center items-end gap-2 ',
-        'text-[var(--background-color)] bg-[var(--main-color)]/80 hover:bg-[var(--main-color)]',
-        'border-b-4 rounded-2xl border-[var(--border-color)]'
+        'w-[100vw]',
+        'border-t-1 border-[var(--border-color)] bg-[var(--card-color)]',
+        'absolute bottom-0 md:bottom-6 z-10 py-4 px-4',
+        'flex justify-center items-center'
       )}
-      onClick={onClick}
-      disabled={disabled}
     >
-      <span>continue</span>
-      <CircleArrowRight className='' />
-    </button>
-  </div>
-);
+      <button
+        ref={buttonRef}
+        className={clsx(
+          'text-xl font-medium py-4 px-16 rounded-3xl duration-250 hover:cursor-pointer',
+
+          'w-full md:w-1/2',
+
+          // buttonBorderStyles,
+          'flex flex-row justify-center items-end gap-2 ',
+          'text-[var(--background-color)] bg-[var(--main-color)]',
+          'border-b-4 rounded-2xl'
+        )}
+        style={{ borderColor: mainBorderColor || undefined }}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        <span>continue</span>
+        <CircleArrowRight className='' />
+      </button>
+    </div>
+  );
+};
 
 const KanjiDisplay = ({ payload }: { payload: IKanjiObj }) => (
   <div className='relative w-full max-w-[100px] aspect-square flex items-center justify-center'>

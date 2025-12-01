@@ -283,7 +283,7 @@ const MainMenu = () => {
         className={clsx(
           'fixed bottom-0 md:bottom-6 left-0 right-0 z-50',
           'max-md:flex justify-center gap-2',
-          'bg-[var(--background-color)] max-md:border-t-2 border-[var(--border-color)]',
+          ' max-md:border-t-2 border-[var(--border-color)]',
           'px-2 sm:px-4 py-2',
           'flex items-center justify-between ',
           expandDecorations && 'hidden'
