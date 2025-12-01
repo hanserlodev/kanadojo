@@ -11,6 +11,7 @@ import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import useStatsStore from '@/features/Progress';
 import VocabSetDictionary from '@/features/Vocabulary/components/SetDictionary';
 import { IWord } from '@/shared/types';
+import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 type RawVocabEntry = {
   jmdict_seq: string;
@@ -321,11 +322,22 @@ const VocabCards = () => {
                           'text-2xl flex justify-center items-center gap-2 group',
                           'rounded-xl  hover:cursor-pointer',
                           'duration-250 transition-all ease-in-out',
-                          'px-2 py-3 max-md:mx-4 border-b-4  border-[var(--border-color)]',
+                          'px-2 py-3 max-md:mx-4 border-b-5',
                           isSelected
-                            ? 'bg-[var(--secondary-color)]/80 text-[var(--background-color)] '
-                            : ' bg-[var(--background-color)] hover:border-[var(--main-color)]/80'
+                            ? 'bg-[var(--secondary-color)] text-[var(--background-color)]'
+                            : 'bg-[var(--background-color)] border-[var(--border-color)] hover:border-[var(--main-color)]/80'
                         )}
+                        style={
+                          isSelected
+                            ? {
+                                borderColor: generateButtonBorderColor(
+                                  getComputedStyle(document.documentElement)
+                                    .getPropertyValue('--secondary-color')
+                                    .trim()
+                                )
+                              }
+                            : undefined
+                        }
                         onClick={e => {
                           e.currentTarget.blur();
                           playClick();

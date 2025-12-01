@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { themes } from '@/features/Preferences';
+import themeSets from '@/features/Preferences/data/themes';
 import fonts from '@/features/Preferences/data/fonts';
 import { Random } from 'random-js';
 import { persist } from 'zustand/middleware';
@@ -39,7 +39,7 @@ const useCrazyModeStore = create<CrazyModeState>()(
 
       randomize: () => {
         // Flatten themes to get all available theme IDs
-        const allThemes = themes.flatMap(group => group.themes);
+        const allThemes = themeSets.flatMap(group => group.themes);
         const randomTheme = allThemes[random.integer(0, allThemes.length - 1)];
 
         const randomFont = fonts[random.integer(0, fonts.length - 1)];

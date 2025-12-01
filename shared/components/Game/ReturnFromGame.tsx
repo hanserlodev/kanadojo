@@ -17,6 +17,7 @@ import {
   type LucideIcon
 } from 'lucide-react';
 import ProgressBar from './ProgressBar';
+import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 // Game mode icon configuration
 const GAME_MODE_ICONS: Record<
@@ -134,10 +135,17 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
             className={clsx(
               'p-2 text-xl flex flex-row justify-center items-center gap-2',
               'hover:cursor-pointer duration-275 rounded-xl',
-              'transition-all ease-in-out border-b-4',
-              'bg-[var(--main-color)] border-[var(--border-color)]',
+              'transition-all ease-in-out border-b-5',
+              'bg-[var(--main-color)]',
               'text-[var(--background-color)]'
             )}
+            style={{
+              borderColor: generateButtonBorderColor(
+                getComputedStyle(document.documentElement)
+                  .getPropertyValue('--main-color')
+                  .trim()
+              )
+            }}
             onClick={handleShowStats}
           >
             <ChartSpline size={24} />

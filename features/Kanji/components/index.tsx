@@ -11,6 +11,7 @@ import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useStatsStore from '@/features/Progress';
 import KanjiSetDictionary from '@/features/Kanji/components/SetDictionary';
 import type { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
+import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 //triggering vercel redeployment
 
 type RawKanjiEntry = {
@@ -313,13 +314,24 @@ const KanjiCards = () => {
                       <button
                         className={clsx(
                           'text-2xl flex justify-center items-center gap-2 group',
-                          'rounded-xl  hover:cursor-pointer border-[var(--border-color)]',
-                          'duration-250 transition-all ease-in-out border-b-4',
+                          'rounded-xl  hover:cursor-pointer',
+                          'duration-250 transition-all ease-in-out border-b-5',
                           'px-2 py-3 max-md:mx-4',
                           isSelected
-                            ? 'bg-[var(--secondary-color)]/80 text-[var(--background-color)] '
-                            : 'bg-[var(--background-color)] hover:border-[var(--main-color)]/80'
+                            ? 'bg-[var(--secondary-color)] text-[var(--background-color)]'
+                            : 'bg-[var(--background-color)] border-[var(--border-color)] hover:border-[var(--main-color)]/80'
                         )}
+                        style={
+                          isSelected
+                            ? {
+                                borderColor: generateButtonBorderColor(
+                                  getComputedStyle(document.documentElement)
+                                    .getPropertyValue('--secondary-color')
+                                    .trim()
+                                )
+                              }
+                            : undefined
+                        }
                         onClick={e => {
                           e.currentTarget.blur();
                           playClick();

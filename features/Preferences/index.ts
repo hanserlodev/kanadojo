@@ -10,7 +10,7 @@ export { default as useGoalTimersStore } from './store/useGoalTimersStore';
 export { default as Settings } from './components';
 
 // Data
-export { default as themes, getTheme, applyTheme, applyThemeObject } from './data/themes';
+export { getTheme, applyTheme, applyThemeObject } from './data/themes';
 export { default as fonts } from './data/fonts';
 
 // Re-export defaults for compatibility

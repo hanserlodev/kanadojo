@@ -3,7 +3,7 @@
  * Run this to validate all themes against WCAG requirements
  */
 
-import themes from '../data/themes';
+import themeSets from '../data/themes';
 import {
   validateTheme,
   getValidationSummary,
@@ -24,7 +24,7 @@ interface Theme {
  */
 function getAllThemes(): Theme[] {
   const allThemes: Theme[] = [];
-  themes.forEach(group => {
+  themeSets.forEach(group => {
     group.themes.forEach(theme => {
       allThemes.push(theme);
     });

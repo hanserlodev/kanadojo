@@ -14,7 +14,7 @@ import {
   getHueDifference
 } from './colorUtils';
 import { validateTheme, validateAllThemes } from './themeValidator';
-import themes from '../data/themes';
+import themeSets from '../data/themes';
 
 describe('Color Parsing', () => {
   it('parses hex colors correctly', () => {
@@ -172,7 +172,7 @@ describe('Theme Audit - All Existing Themes', () => {
     secondaryColor: string;
   }> = [];
 
-  themes.forEach(group => {
+  themeSets.forEach(group => {
     group.themes.forEach(theme => {
       allThemes.push(theme);
     });

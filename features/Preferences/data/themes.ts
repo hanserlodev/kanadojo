@@ -3,7 +3,6 @@ import {
   Atom,
   Sun,
   Moon,
-  // Sparkles,
   LucideIcon,
   CloudLightning,
   TreePine
@@ -24,7 +23,7 @@ interface ThemeGroup {
   themes: Theme[];
 }
 
-const themes: ThemeGroup[] = [
+const themeSets: ThemeGroup[] = [
   {
     name: 'Base',
     icon: Atom,
@@ -95,8 +94,14 @@ const themes: ThemeGroup[] = [
       {
         id: 'yukata',
         backgroundColor: 'oklch(19.83% 0.0367 263.24 / 1)',
+        /* 
+        cardColor: 'oklch(24.83% 0.0367 263.24 / 1)',
+        borderColor: 'oklch(36.83% 0.0367 263.24 / 1)',
+ */
+
         cardColor: 'oklch(23.73% 0.0471 263.13 / 1)',
         borderColor: 'oklch(31.15% 0.0648 263.05 / 1)',
+
         mainColor: 'oklch(65.16% 0.1943 14.70 / 1)',
         secondaryColor: 'oklch(68.92% 0.1657 313.51 / 1)'
       },
@@ -775,9 +780,11 @@ const themes: ThemeGroup[] = [
   }
 ];
 
+export default themeSets;
+
 // Flatten all themes into a map for easy lookup
 const themeMap = new Map<string, Theme>();
-themes.forEach(group => {
+themeSets.forEach(group => {
   group.themes.forEach(theme => {
     themeMap.set(theme.id, theme);
   });
@@ -831,43 +838,51 @@ export function getTheme(themeId: string): Theme | undefined {
   return themeMap.get(themeId);
 }
 
-// Convert hex to OKLCH
-export function hexToOklch(hex: string, valuesOnly = false) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result || result.length !== 4) throw 'Failed to parse hex';
+/**
+ * Generates a border color from an OKLCH color string.
+ * Creates a darker, slightly more saturated version for a soft, pressable button effect.
+ *
+ * Color theory rationale:
+ * - Lowering lightness creates depth/shadow, making buttons feel 3D and pressable
+ * - Slightly boosting chroma prevents the darker color from looking muddy/desaturated
+ * - Keeping the same hue maintains color harmony
+ *
+ * @param oklchColor - OKLCH color string, e.g. "oklch(74.61% 0.1715 51.56 / 1)"
+ * @param lightnessReduction - Proportional lightness reduction (0-1, default 0.18)
+ * @param chromaBoost - Absolute chroma increase (default 0.025)
+ * @returns OKLCH color string for the border
+ */
+export function generateButtonBorderColor(
+  oklchColor: string,
+  lightnessReduction = 0.25,
+  chromaBoost = 0.05
+): string {
+  // Parse OKLCH: "oklch(L% C H / A)" or "oklch(L C H / A)"
+  const match = oklchColor.match(
+    /oklch\(\s*([\d.]+)%?\s+([\d.]+)\s+([\d.]+)\s*(?:\/\s*([\d.]+))?\s*\)/
+  );
 
-  let r = parseInt(result[1], 16) / 255;
-  let g = parseInt(result[2], 16) / 255;
-  let b = parseInt(result[3], 16) / 255;
+  if (!match) {
+    console.warn('Could not parse OKLCH color:', oklchColor);
+    return oklchColor;
+  }
 
-  // Convert sRGB to linear RGB
-  r = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
-  g = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
-  b = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+  let L = parseFloat(match[1]);
+  let C = parseFloat(match[2]);
+  const H = parseFloat(match[3]);
+  const A = match[4] ? parseFloat(match[4]) : 1;
 
-  // Convert linear RGB to OKLab
-  const l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b;
-  const m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b;
-  const s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b;
+  // Normalize L if percentage (e.g., "74.61%" -> 0.7461)
+  if (L > 1) L = L / 100;
 
-  const l_ = Math.cbrt(l);
-  const m_ = Math.cbrt(m);
-  const s_ = Math.cbrt(s);
+  // Reduce lightness proportionally — darker = depth/shadow
+  const newL = Math.max(0.05, L - lightnessReduction * L);
 
-  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
-  const a = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
-  const b_ = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+  // Boost chroma to keep vibrancy — prevents muddy shadows
+  // Cap to avoid oversaturation artifacts
+  const newC = Math.min(0.37, C + chromaBoost);
 
-  // Convert to LCH
-  const C = Math.sqrt(a * a + b_ * b_);
-  let H = Math.atan2(b_, a) * (180 / Math.PI);
-  if (H < 0) H += 360;
-
-  const cssString = valuesOnly
-    ? `${L.toFixed(4)} ${C.toFixed(4)} ${H.toFixed(2)}`
-    : `oklch(${L.toFixed(4)} ${C.toFixed(4)} ${H.toFixed(2)})`;
-
-  return cssString;
+  return `oklch(${(newL * 100).toFixed(2)}% ${newC.toFixed(4)} ${H.toFixed(
+    2
+  )} / ${A})`;
 }
-
-export default themes;

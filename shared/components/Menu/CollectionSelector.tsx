@@ -19,6 +19,7 @@ import {
 import { useClick } from '@/shared/hooks';
 import { CircleCheck, Circle, Trash } from 'lucide-react';
 import { useMemo } from 'react';
+import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 type CollectionLevel = 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
 type ContentType = 'kanji' | 'vocabulary';
@@ -207,10 +208,16 @@ const CollectionSelector = () => {
         <button
           className={clsx(
             'py-3 px-16 w-full',
-            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--background-color)] border-b-4 border-[var(--border-color)] hover:border-[var(--main-color)]/80',
-            'text-[var(--main-color)]',
+            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--secondary-color)] border-b-6 text-[var(--background-color)]',
             'flex justify-center'
           )}
+          style={{
+            borderColor: generateButtonBorderColor(
+              getComputedStyle(document.documentElement)
+                .getPropertyValue('--secondary-color')
+                .trim()
+            )
+          }}
           onClick={handleClear}
           aria-label='Clear selected levels'
         >

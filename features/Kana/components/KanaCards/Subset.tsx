@@ -6,7 +6,7 @@ import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import usePreferencesStore from '@/features/Preferences';
 import { useClick } from '@/shared/hooks';
-import { miniButtonBorderStyles } from '@/shared/lib/styles';
+import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 const FINAL_CHARACTERS = [
   'h.b.w',
@@ -139,11 +139,19 @@ const Subset = ({ sliceRange, subgroup }: SubsetProps) => {
         <button
           type='button'
           className={clsx(
-            'p-2 font-normal text-lg w-full',
-            miniButtonBorderStyles,
+            'p-2 font-normal text-lg w-full hover:cursor-pointer',
+            'rounded-xl bg-[var(--main-color)] text-[var(--background-color)]',
             'flex flex-row justify-center items-center gap-1.5',
-            'border-b-4 border-[var(--border-color)] hover:border-[var(--main-color)]/80'
+            'border-b-5 '
+            // 'border-r-3 border-l-3 border-t-2'
           )}
+          style={{
+            borderColor: generateButtonBorderColor(
+              getComputedStyle(document.documentElement)
+                .getPropertyValue('--main-color')
+                .trim()
+            )
+          }}
           onClick={e => {
             e.currentTarget.blur();
             selectAllInSubset();
