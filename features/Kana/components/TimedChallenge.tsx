@@ -3,8 +3,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
-import { useChallengeTimer, useGoalTimers } from '@/shared/hooks';
-import { Button } from '@/shared/components';
+import { useChallengeTimer } from '@/shared/hooks/useTimer';
+import { useGoalTimers } from '@/shared/hooks/useGoalTimers';
+import { Button } from '@/shared/components/ui/button';
 import { generateKanaQuestion } from '@/features/Kana/lib/generateKanaQuestions';
 import {
   Timer,
@@ -21,7 +22,7 @@ import { Link } from '@/core/i18n/routing';
 import clsx from 'clsx';
 import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
 import confetti from 'canvas-confetti';
-import { SSRAudioButton } from '@/shared/components';
+import SSRAudioButton from '@/shared/components/SSRAudioButton';
 import GoalTimersPanel from '@/shared/components/Timer/GoalTimersPanel';
 
 import type { KanaCharacter } from '@/features/Kana/lib/generateKanaQuestions';

@@ -1,4 +1,4 @@
-import { DevNotice } from '@/shared/components';
+import DevNotice from '@/shared/components/DevNotice';
 import RandomFact from '@/shared/components/RandomFact';
 // import { Link } from '@/i18n/routing';
 

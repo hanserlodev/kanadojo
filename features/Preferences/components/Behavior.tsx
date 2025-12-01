@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import {
   AudioLines,
   VolumeX,

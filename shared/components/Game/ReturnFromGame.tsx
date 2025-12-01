@@ -2,7 +2,8 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { Link } from '@/core/i18n/routing';
-import { useClick, useButtonBorderColor } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { useStopwatch } from 'react-timer-hook';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
 import {

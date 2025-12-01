@@ -7,7 +7,7 @@ import useStatsStore from '@/features/Progress/store/useStatsStore';
 import { miniButtonBorderStyles } from '@/shared/lib/styles';
 import { ChartSpline } from 'lucide-react';
 import { useStopwatch } from 'react-timer-hook';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import { usePathname } from 'next/navigation';

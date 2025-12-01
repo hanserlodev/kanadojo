@@ -5,7 +5,7 @@ import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import { CircleCheck, CircleX } from 'lucide-react';
 import { Random } from 'random-js';
-import { useCorrect, useError } from '@/shared/hooks';
+import { useCorrect, useError } from '@/shared/hooks/useAudio';
 import GameIntel from '@/shared/components/Game/GameIntel';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';

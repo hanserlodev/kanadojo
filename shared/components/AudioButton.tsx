@@ -1,5 +1,5 @@
 'use client';
-import { useJapaneseTTS } from '@/shared/hooks';
+import { useJapaneseTTS } from '@/shared/hooks/useJapaneseTTS';
 import { Volume2, Loader2 } from 'lucide-react';
 import clsx from 'clsx';
 import { buttonBorderStyles } from '@/shared/lib/styles';

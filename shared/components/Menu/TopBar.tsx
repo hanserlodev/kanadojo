@@ -6,7 +6,7 @@ import useKanaStore from '@/features/Kana/store/useKanaStore';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { Play, Timer } from 'lucide-react';
 
 interface ITopBarProps {

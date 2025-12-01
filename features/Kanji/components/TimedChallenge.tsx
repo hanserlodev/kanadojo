@@ -5,14 +5,11 @@ import useKanjiStore, {
   type IKanjiObj
 } from '@/features/Kanji/store/useKanjiStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
-import {
-  useChallengeTimer,
-  useGoalTimers,
-  useClick,
-  useCorrect,
-  useError
-} from '@/shared/hooks';
-import { Button, SSRAudioButton } from '@/shared/components';
+import { useChallengeTimer } from '@/shared/hooks/useTimer';
+import { useGoalTimers } from '@/shared/hooks/useGoalTimers';
+import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
+import { Button } from '@/shared/components/ui/button';
+import SSRAudioButton from '@/shared/components/SSRAudioButton';
 import {
   Timer,
   Target,

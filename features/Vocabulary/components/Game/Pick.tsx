@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { CircleCheck, CircleX } from 'lucide-react';
 import { Random } from 'random-js';
 import { IVocabObj } from '@/features/Vocabulary/store/useVocabStore';
-import { useCorrect, useError } from '@/shared/hooks';
+import { useCorrect, useError } from '@/shared/hooks/useAudio';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import GameIntel from '@/shared/components/Game/GameIntel';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';

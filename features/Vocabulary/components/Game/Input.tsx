@@ -5,7 +5,7 @@ import { Random } from 'random-js';
 import clsx from 'clsx';
 import * as wanakana from 'wanakana';
 import { IVocabObj } from '@/features/Vocabulary/store/useVocabStore';
-import { useClick, useCorrect, useError } from '@/shared/hooks';
+import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
 import GameIntel from '@/shared/components/Game/GameIntel';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import { useStopwatch } from 'react-timer-hook';

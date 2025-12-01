@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { CircleCheck, CircleX } from 'lucide-react';
 import { Random } from 'random-js';
 import { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import { useCorrect, useError } from '@/shared/hooks';
+import { useCorrect, useError } from '@/shared/hooks/useAudio';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import GameIntel from '@/shared/components/Game/GameIntel';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';

@@ -1,11 +1,12 @@
 'use client';
 
 import clsx from 'clsx';
-import { chunkArray } from '@/shared/lib';
+import { chunkArray } from '@/shared/lib/helperFunctions';
 import { useState, useMemo, useEffect } from 'react';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import useGridColumns from '@/shared/hooks/useGridColumns';
-import { useClick, useButtonBorderColor } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';

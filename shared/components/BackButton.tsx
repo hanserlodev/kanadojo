@@ -1,6 +1,6 @@
 'use client';
 
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { ChevronsLeft } from 'lucide-react';
 import { Link } from '@/core/i18n/routing';
 import clsx from 'clsx';
@@ -10,7 +10,7 @@ const BackButton = () => {
   const { playClick } = useClick();
 
   return (
-    <Link href="/" className="w-full md:w-1/3 lg:w-1/4">
+    <Link href='/' className='w-full md:w-1/3 lg:w-1/4'>
       <button
         onClick={() => playClick()}
         className={clsx(

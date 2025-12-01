@@ -5,7 +5,7 @@ import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import { MousePointerClick, Keyboard, CircleCheck, Circle } from 'lucide-react';
 import clsx from 'clsx';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { usePathname } from 'next/navigation';
 import { useShallow } from 'zustand/react/shallow';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
@@ -19,14 +19,14 @@ const GameModes = () => {
   const { selectedGameModeKana, setSelectedGameModeKana } = useKanaStore(
     useShallow(state => ({
       selectedGameModeKana: state.selectedGameModeKana,
-      setSelectedGameModeKana: state.setSelectedGameModeKana,
+      setSelectedGameModeKana: state.setSelectedGameModeKana
     }))
   );
 
   const { selectedGameModeKanji, setSelectedGameModeKanji } = useKanjiStore(
     useShallow(state => ({
       selectedGameModeKanji: state.selectedGameModeKanji,
-      setSelectedGameModeKanji: state.setSelectedGameModeKanji,
+      setSelectedGameModeKanji: state.setSelectedGameModeKanji
     }))
   );
 
@@ -90,40 +90,40 @@ const GameModes = () => {
             onClick={() => playClick()}
           >
             <input
-              type="radio"
-              name="selectedGameMode"
+              type='radio'
+              name='selectedGameMode'
               onChange={() => setSelectedGameMode(gameMode)}
-              className="hidden"
+              className='hidden'
             />
-            <span className="text-lg font-medium py-2 px-1 sm:px-2 text-center flex flex-row justify-center items-center gap-2">
+            <span className='text-lg font-medium py-2 px-1 sm:px-2 text-center flex flex-row justify-center items-center gap-2'>
               {gameMode === selectedGameMode ? (
-                <CircleCheck className="text-[var(--main-color)]" />
+                <CircleCheck className='text-[var(--main-color)]' />
               ) : (
-                <Circle className="text-[var(--border-color)]" />
+                <Circle className='text-[var(--border-color)]' />
               )}
               <span>{gameMode}</span>
               {gameMode.toLowerCase() === 'pick' && (
                 <MousePointerClick
                   size={22}
-                  className="text-[var(--main-color)] motion-safe:animate-pulse"
+                  className='text-[var(--main-color)] motion-safe:animate-pulse'
                 />
               )}
               {gameMode.toLowerCase() === 'anti-pick' && (
                 <MousePointerClick
                   size={22}
-                  className=" scale-x-[-1] text-[var(--main-color)] motion-safe:animate-pulse"
+                  className=' scale-x-[-1] text-[var(--main-color)] motion-safe:animate-pulse'
                 />
               )}
               {gameMode.toLowerCase() === 'type' && (
                 <Keyboard
                   size={22}
-                  className="text-[var(--main-color)] motion-safe:animate-pulse"
+                  className='text-[var(--main-color)] motion-safe:animate-pulse'
                 />
               )}
               {gameMode.toLowerCase() === 'anti-type' && (
                 <Keyboard
                   size={22}
-                  className="scale-y-[-1] text-[var(--main-color)] motion-safe:animate-pulse"
+                  className='scale-y-[-1] text-[var(--main-color)] motion-safe:animate-pulse'
                 />
               )}
             </span>

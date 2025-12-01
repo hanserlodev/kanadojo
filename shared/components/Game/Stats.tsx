@@ -17,8 +17,8 @@ import {
   LucideIcon
 } from 'lucide-react';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
-import { findHighestCounts } from '@/shared/lib';
-import { useClick } from '@/shared/hooks';
+import { findHighestCounts } from '@/shared/lib/helperFunctions';
+import { useClick } from '@/shared/hooks/useAudio';
 
 interface StatItem {
   label: string;

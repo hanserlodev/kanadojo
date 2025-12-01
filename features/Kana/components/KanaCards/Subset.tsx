@@ -5,7 +5,8 @@ import { MousePointer } from 'lucide-react';
 import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
-import { useClick, useButtonBorderColor } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 const FINAL_CHARACTERS = [
   'h.b.w',

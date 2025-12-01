@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { useClick } from '../hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { useTranslations } from 'next-intl';
 
 export default function BackToTop() {

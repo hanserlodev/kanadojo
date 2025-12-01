@@ -10,8 +10,8 @@ import {
   type Achievement,
   type AchievementRarity
 } from '@/features/Achievements/store/useAchievementStore';
-import { useClick } from '@/shared/hooks';
-import { cardBorderStyles, buttonBorderStyles } from '@/shared/lib';
+import { useClick } from '@/shared/hooks/useAudio';
+import { cardBorderStyles, buttonBorderStyles } from '@/shared/lib/styles';
 
 const rarityConfig: Record<
   AchievementRarity,

@@ -1,6 +1,6 @@
 'use client';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
-import { Button } from '@/shared/components';
+import { Button } from '@/shared/components/ui/button';
 import { Trophy, Target, TrendingUp, Trash } from 'lucide-react';
 import clsx from 'clsx';
 // import yodaCage from "./yodaCage.png";

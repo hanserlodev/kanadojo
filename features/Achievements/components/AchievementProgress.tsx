@@ -11,7 +11,7 @@ import useAchievementStore, {
   type AchievementRarity
 } from '@/features/Achievements/store/useAchievementStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { cardBorderStyles, buttonBorderStyles } from '@/shared/lib/styles';
 
 const rarityConfig: Record<

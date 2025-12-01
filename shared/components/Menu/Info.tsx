@@ -1,7 +1,7 @@
 'use client';
 import clsx from 'clsx';
 import { useState } from 'react';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import { ChevronUp } from 'lucide-react';
 import translationGen from '@/shared/lib/info';

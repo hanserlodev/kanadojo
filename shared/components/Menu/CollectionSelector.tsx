@@ -16,7 +16,8 @@ import {
   N2VocabLength,
   N1VocabLength
 } from '@/shared/lib/unitSets';
-import { useClick, useButtonBorderColor } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { CircleCheck, Circle, Trash } from 'lucide-react';
 import { useMemo } from 'react';
 

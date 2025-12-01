@@ -17,7 +17,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import clsx from 'clsx';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import { useMediaQuery } from 'react-responsive';
 import { buttonBorderStyles } from '@/shared/lib/styles';

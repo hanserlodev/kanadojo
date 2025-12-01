@@ -1,16 +1,17 @@
 'use client';
 
 import clsx from 'clsx';
-import { chunkArray } from '@/shared/lib';
+import { chunkArray } from '@/shared/lib/helperFunctions';
 import { useState, useMemo, useEffect } from 'react';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import useGridColumns from '@/shared/hooks/useGridColumns';
-import { useClick, useButtonBorderColor } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
 import VocabSetDictionary from '@/features/Vocabulary/components/SetDictionary';
-import { IWord } from '@/shared/types';
+import { IWord } from '@/shared/types/interfaces';
 
 type RawVocabEntry = {
   jmdict_seq: string;

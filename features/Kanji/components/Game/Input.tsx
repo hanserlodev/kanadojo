@@ -4,7 +4,7 @@ import { CircleCheck, CircleX, CircleArrowRight } from 'lucide-react';
 import { Random } from 'random-js';
 import clsx from 'clsx';
 import { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import { useClick, useCorrect, useError } from '@/shared/hooks';
+import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
 import GameIntel from '@/shared/components/Game/GameIntel';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import { useStopwatch } from 'react-timer-hook';

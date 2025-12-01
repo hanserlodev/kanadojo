@@ -2,7 +2,7 @@
 import { Link, useRouter, usePathname } from '@/core/i18n/routing';
 import { House, Sparkles, TrendingUp, Trophy } from 'lucide-react';
 import clsx from 'clsx';
-import { useClick } from '@/shared/hooks';
+import { useClick } from '@/shared/hooks/useAudio';
 import { useEffect, useRef } from 'react';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
