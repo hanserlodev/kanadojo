@@ -2,7 +2,7 @@
 
 import { useTranslations as useNextIntlTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import type { Locale } from '@/core/i18n';
+import type { Locale } from '@/core/i18n/routing';
 
 export function useTranslation() {
   const params = useParams();

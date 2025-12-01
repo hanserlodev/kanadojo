@@ -1,5 +1,5 @@
 'use client';
-import { Link } from '@/core/i18n';
+import { Link } from '@/core/i18n/routing';
 import Banner from '@/shared/components/Menu/Banner';
 import clsx from 'clsx';
 

@@ -2,7 +2,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { GoogleAnalytics, MSClarity } from '@/core/analytics';
+import GoogleAnalytics from '@/core/analytics/GoogleAnalytics';
+import MSClarity from '@/core/analytics/MSClarity';
 import {
   StructuredData,
   kanaDojoSchema
