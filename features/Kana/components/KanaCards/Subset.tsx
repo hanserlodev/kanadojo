@@ -5,7 +5,7 @@ import { MousePointer } from 'lucide-react';
 import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import usePreferencesStore from '@/features/Preferences';
-import { useClick } from '@/shared/hooks';
+import { useClick, useCssVariable } from '@/shared/hooks';
 import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
 
 const FINAL_CHARACTERS = [
@@ -29,6 +29,7 @@ interface SubsetProps {
 const Subset = ({ sliceRange, subgroup }: SubsetProps) => {
   const { playClick } = useClick();
   const [focusedRow, setFocusedRow] = useState('');
+  const mainColor = useCssVariable('--main-color');
 
   const kanaGroups = kana.slice(sliceRange[0], sliceRange[1]);
   const kanaGroupIndices = useKanaStore(state => state.kanaGroupIndices);
@@ -146,11 +147,9 @@ const Subset = ({ sliceRange, subgroup }: SubsetProps) => {
             // 'border-r-3 border-l-3 border-t-2'
           )}
           style={{
-            borderColor: generateButtonBorderColor(
-              getComputedStyle(document.documentElement)
-                .getPropertyValue('--main-color')
-                .trim()
-            )
+            borderColor: mainColor
+              ? generateButtonBorderColor(mainColor)
+              : undefined
           }}
           onClick={e => {
             e.currentTarget.blur();

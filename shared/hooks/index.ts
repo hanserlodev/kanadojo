@@ -8,4 +8,5 @@ export { default as useGridColumns } from './useGridColumns';
 export { default as useStats } from './useStats';
 export { useJapaneseTTS } from './useJapaneseTTS';
 export { default as useInfiniteConfetti } from './useInfiniteConfetti';
+export { useCssVariable, getCssVariableSafe } from './useCssVariable';
 export type { GoalTimer } from './useGoalTimers';

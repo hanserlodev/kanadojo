@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { Link } from '@/core/i18n/routing';
-import { useClick } from '@/shared/hooks';
+import { useClick, useCssVariable } from '@/shared/hooks';
 import { useStopwatch } from 'react-timer-hook';
 import useStatsStore from '@/features/Progress';
 import {
@@ -51,6 +51,7 @@ interface ReturnProps {
 const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
   const totalTimeStopwatch = useStopwatch({ autoStart: false });
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
+  const mainColor = useCssVariable('--main-color');
 
   const saveSession = useStatsStore(s => s.saveSession);
   const numCorrectAnswers = useStatsStore(s => s.numCorrectAnswers);
@@ -140,11 +141,9 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
               'text-[var(--background-color)]'
             )}
             style={{
-              borderColor: generateButtonBorderColor(
-                getComputedStyle(document.documentElement)
-                  .getPropertyValue('--main-color')
-                  .trim()
-              )
+              borderColor: mainColor
+                ? generateButtonBorderColor(mainColor)
+                : undefined
             }}
             onClick={handleShowStats}
           >

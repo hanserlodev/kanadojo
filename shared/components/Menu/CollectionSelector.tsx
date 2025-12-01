@@ -16,7 +16,7 @@ import {
   N2VocabLength,
   N1VocabLength
 } from '@/shared/lib/unitSets';
-import { useClick } from '@/shared/hooks';
+import { useClick, useCssVariable } from '@/shared/hooks';
 import { CircleCheck, Circle, Trash } from 'lucide-react';
 import { useMemo } from 'react';
 import { generateButtonBorderColor } from '@/features/Preferences/data/themes';
@@ -47,6 +47,7 @@ const CollectionSelector = () => {
   const { playClick } = useClick();
   const pathname = usePathname();
   const contentType = removeLocaleFromPath(pathname).slice(1) as ContentType;
+  const secondaryColor = useCssVariable('--secondary-color');
 
   const isKanji = contentType === 'kanji';
   const isVocab = contentType === 'vocabulary';
@@ -212,11 +213,9 @@ const CollectionSelector = () => {
             'flex justify-center'
           )}
           style={{
-            borderColor: generateButtonBorderColor(
-              getComputedStyle(document.documentElement)
-                .getPropertyValue('--secondary-color')
-                .trim()
-            )
+            borderColor: secondaryColor
+              ? generateButtonBorderColor(secondaryColor)
+              : undefined
           }}
           onClick={handleClear}
           aria-label='Clear selected levels'
