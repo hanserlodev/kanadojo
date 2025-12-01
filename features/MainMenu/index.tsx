@@ -285,7 +285,7 @@ const MainMenu = () => {
           'max-md:flex justify-center gap-2',
           ' max-md:border-t-2 border-[var(--border-color)]',
           'px-2 sm:px-4 py-2',
-          'flex items-center justify-between ',
+          'flex items-center justify-between max-md:opacity-100',
           expandDecorations && 'hidden'
         )}
       >
