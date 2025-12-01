@@ -6,6 +6,38 @@ import { useClick } from '@/shared/hooks/useAudio';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import { ChevronUp } from 'lucide-react';
 
+const STORAGE_KEY = 'kana-hidden-subsets';
+
+const DEFAULT_HIDDEN_SUBSETS = [
+  'hdakuon',
+  'hyoon',
+  'kdakuon',
+  'kyoon',
+  'kforeign sounds',
+  'csimilar hiragana',
+  'cconfusing katakana'
+];
+
+const getInitialState = (): string[] => {
+  if (typeof window === 'undefined') return DEFAULT_HIDDEN_SUBSETS;
+
+  try {
+    const stored = sessionStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : DEFAULT_HIDDEN_SUBSETS;
+  } catch (error) {
+    console.error('Failed to load from session storage:', error);
+    return DEFAULT_HIDDEN_SUBSETS;
+  }
+};
+
+const saveToSessionStorage = (hiddenSubsets: string[]) => {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(hiddenSubsets));
+  } catch (error) {
+    console.error('Failed to save to session storage:', error);
+  }
+};
+
 const KanaCards = () => {
   const { playClick } = useClick();
 
@@ -36,25 +68,20 @@ const KanaCards = () => {
     }
   ];
 
-  const [hiddenSubsets, setHiddenSubsets] = useState<string[]>([
-    'hdakuon',
-    'hyoon',
-    'kdakuon',
-    'kyoon',
-    'kforeign sounds',
-    'csimilar hiragana',
-    'cconfusing katakana'
-  ]);
+  const [hiddenSubsets, setHiddenSubsets] = useState<string[]>(getInitialState);
 
   const toggleVisibility = (name: string) => {
     playClick();
     const lowerName = name.toLowerCase();
 
-    setHiddenSubsets(prev =>
-      prev.includes(lowerName)
+    setHiddenSubsets(prev => {
+      const updated = prev.includes(lowerName)
         ? prev.filter(item => item !== lowerName)
-        : [...prev, lowerName]
-    );
+        : [...prev, lowerName];
+
+      saveToSessionStorage(updated);
+      return updated;
+    });
   };
 
   const isHidden = (name: string) => hiddenSubsets.includes(name.toLowerCase());

@@ -5,7 +5,6 @@ import {
   Hachi_Maru_Pop,
   Yuji_Mai,
   RocknRoll_One,
-  Dela_Gothic_One,
   Yusei_Magic,
   Mochiy_Pop_One
 } from 'next/font/google';
@@ -58,13 +57,7 @@ const rocknRollOne = RocknRoll_One({
   fallback: ['system-ui', 'sans-serif']
 });
 
-const delaGothicOne = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-  preload: false,
-  fallback: ['system-ui', 'sans-serif']
-});
+
 
 const yuseiMagic = Yusei_Magic({
   subsets: ['latin'],
@@ -106,10 +99,6 @@ export const decorationFonts = [
   {
     name: 'RocknRoll One',
     font: rocknRollOne
-  },
-  {
-    name: 'Dela Gothic One',
-    font: delaGothicOne
   },
   {
     name: 'Yusei Magic',
