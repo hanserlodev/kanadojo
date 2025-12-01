@@ -30,7 +30,7 @@ import {
   Zen_Antique,
   Kaisei_Tokumin,
   Yuji_Syuku,
-  // WDXL_Lubrifont_JP_N, // Commented out - causes font override error
+  WDXL_Lubrifont_JP_N, // Commented out - causes font override error
   Murecho,
   Kaisei_Opti,
   BIZ_UDMincho,
@@ -282,14 +282,13 @@ const yujiSyuku = Yuji_Syuku({
   fallback: ['system-ui', 'sans-serif']
 });
 
-// Commented out - causes font override error
-// const wdxlLubrifontJPN = WDXL_Lubrifont_JP_N({
-//   subsets: ['latin'],
-//   weight: ['400'],
-//   display: 'swap',
-//   preload: false,
-//   fallback: ['system-ui', 'sans-serif']
-// });
+const wdxlLubrifontJPN = WDXL_Lubrifont_JP_N({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+  preload: false,
+  fallback: ['system-ui', 'sans-serif']
+});
 
 const murecho = Murecho({
   subsets: ['latin'],
@@ -449,11 +448,10 @@ const fonts = [
     name: 'Yuji Syuku',
     font: yujiSyuku
   },
-  // Commented out - causes font override error
-  // {
-  //   name: 'WDXL Lubrifont JP N',
-  //   font: wdxlLubrifontJPN
-  // },
+  {
+    name: 'WDXL Lubrifont JP N',
+    font: wdxlLubrifontJPN
+  },
   {
     name: 'Murecho',
     font: murecho

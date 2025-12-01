@@ -538,22 +538,47 @@ const Behavior = () => {
           )}
           onClick={() => {
             playClick();
-            useCrazyModeStore.getState().toggleCrazyMode();
+            const currentState = useCrazyModeStore.getState().isCrazyMode;
+            if (!currentState) {
+              useCrazyModeStore.getState().toggleCrazyMode();
+            }
           }}
         >
           <span>
             <span className='text-[var(--main-color)]'>
               {useCrazyModeStore(state => state.isCrazyMode) && '\u2B24 '}
             </span>
-            {useCrazyModeStore(state => state.isCrazyMode) ? 'On' : 'Off'}
+            on
           </span>
-          {useCrazyModeStore(state => state.isCrazyMode) ? (
-            <Zap size={20} className='mb-0.5' />
-          ) : (
-            <ZapOff size={20} className='mb-0.5' />
+          <Zap size={20} className='mb-0.5' />
+        </button>
+        <button
+          className={clsx(
+            buttonBorderStyles,
+            'text-center text-lg',
+            'w-1/2 md:w-1/4 p-4',
+            'flex flex-row gap-1.5 justify-center items-end',
+            'text-[var(--secondary-color)]',
+            'flex-1 overflow-hidden'
           )}
+          onClick={() => {
+            playClick();
+            const currentState = useCrazyModeStore.getState().isCrazyMode;
+            if (currentState) {
+              useCrazyModeStore.getState().toggleCrazyMode();
+            }
+          }}
+        >
+          <span>
+            <span className='text-[var(--main-color)]'>
+              {!useCrazyModeStore(state => state.isCrazyMode) && '\u2B24 '}
+            </span>
+            off
+          </span>
+          <ZapOff size={20} className='mb-0.5' />
         </button>
       </div>
+      {/* 
       <h4 className='text-lg'>Enable theme preview on hover:</h4>
       <div className='flex flex-row gap-4'>
         <button
@@ -599,7 +624,7 @@ const Behavior = () => {
           </span>
         </button>
       </div>
-
+ */}
       {/*       <h4 className="text-lg">Enable hotkeys (desktop only):</h4>
       <div className="flex flex-row gap-4">
         <button

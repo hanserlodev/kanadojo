@@ -51,7 +51,7 @@ const ContinueButton = ({
           // buttonBorderStyles,
           'flex flex-row justify-center items-end gap-2 ',
           'text-[var(--background-color)] bg-[var(--main-color)]',
-          'border-b-4 rounded-2xl'
+          'border-b-8 rounded-2xl'
         )}
         style={{ borderColor: mainBorderColor || undefined }}
         onClick={onClick}

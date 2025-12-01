@@ -47,6 +47,7 @@ const SetDictionary = ({ words }: SetDictionaryProps) => {
                   'text-[var(--secondary-color)] '
                 )}
               >
+                {/* {toRomaji(rawReading) + ' ' + rawReading} */}
                 {displayReading}
               </span>
               <p className='text-xl md:text-2xl text-[var(--secondary-color)]'>
