@@ -131,7 +131,7 @@ export default function ClientLayout({
       )}
       style={{
         height: '100dvh',
-        overflowY: 'scroll'
+        overflowY: 'auto'
       }}
     >
       {children}
