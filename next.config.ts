@@ -3,21 +3,18 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./core/i18n/request.ts');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 const nextConfig: NextConfig = {
   // Performance optimizations
   reactStrictMode: false, // Disable in dev for faster startup (enable in production)
 
   // Disable instrumentation in development
-  instrumentationHook: process.env.NODE_ENV === 'production',
+  instrumentationHook: !isDev,
 
   // Compiler optimizations
   compiler: {
-    removeConsole:
-      process.env.NODE_ENV === 'production'
-        ? {
-            exclude: ['error', 'warn']
-          }
-        : false
+    removeConsole: !isDev ? { exclude: ['error', 'warn'] } : false
   },
 
   // Experimental features for better performance
@@ -29,18 +26,41 @@ const nextConfig: NextConfig = {
       '@fortawesome/react-fontawesome',
       '@fortawesome/free-solid-svg-icons',
       '@fortawesome/free-regular-svg-icons',
-      '@fortawesome/free-brands-svg-icons'
+      '@fortawesome/free-brands-svg-icons',
+      '@radix-ui/react-select',
+      'zustand',
+      'clsx',
+      'class-variance-authority'
     ],
     // Faster builds
-    webpackBuildWorker: true
+    webpackBuildWorker: true,
+    // Turbo-specific optimizations
+    turbo: {
+      // Resolve aliases for faster module resolution
+      resolveAlias: {
+        '@/features': './features',
+        '@/shared': './shared',
+        '@/core': './core'
+      }
+    }
   },
 
   // Reduce overhead in development
-  devIndicators: {},
+  devIndicators: false,
 
   // Optimize images
   images: {
     formats: ['image/avif', 'image/webp']
+  },
+
+  // Skip type checking during dev (run separately with `npm run check`)
+  typescript: {
+    ignoreBuildErrors: isDev
+  },
+
+  // Skip ESLint during dev builds
+  eslint: {
+    ignoreDuringBuilds: isDev
   }
 };
 
