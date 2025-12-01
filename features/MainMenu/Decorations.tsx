@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { themeSets } from '@/features/Preferences';
+import themeSets from '@/features/Preferences/data/themes';
 import clsx from 'clsx';
 
 type RawKanjiEntry = {

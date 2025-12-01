@@ -1,8 +1,8 @@
 // Helpers to export/import user preferences and stats (client-side only)
 
-import { useCustomThemeStore } from '@/features/Preferences';
-import usePreferencesStore from '@/features/Preferences';
-import useStatsStore from '@/features/Progress';
+import { useCustomThemeStore } from '@/features/Preferences/store/useCustomThemeStore';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 
 // JSON-safe type
 export type JSONValue =

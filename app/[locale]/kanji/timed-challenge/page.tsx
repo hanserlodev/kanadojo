@@ -1,4 +1,4 @@
-import { TimedChallenge as TimedChallengeKanji } from '@/features/Kanji';
+import TimedChallengeKanji from '@/features/Kanji/components/TimedChallenge';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

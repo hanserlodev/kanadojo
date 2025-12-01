@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Link } from '@/core/i18n/routing';
 import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import { useStopwatch } from 'react-timer-hook';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import {
   X,
   SquareCheck,

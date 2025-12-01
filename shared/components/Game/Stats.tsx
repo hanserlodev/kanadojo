@@ -16,7 +16,7 @@ import {
   ChevronsLeft,
   LucideIcon
 } from 'lucide-react';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import { findHighestCounts } from '@/shared/lib';
 import { useClick } from '@/shared/hooks';
 

@@ -5,11 +5,10 @@ import Pick from './Pick';
 import Input from './Input';
 
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import Stats from '@/shared/components/Game/Stats';
 
 const Game = () => {
-
   const showStats = useStatsStore(state => state.showStats);
 
   const resetStats = useStatsStore(state => state.resetStats);

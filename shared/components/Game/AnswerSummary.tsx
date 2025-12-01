@@ -6,7 +6,7 @@ import { CircleArrowRight } from 'lucide-react';
 import { Dispatch, SetStateAction, useRef, useEffect } from 'react';
 import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import FuriganaText from '@/shared/components/FuriganaText';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 
 // Type guard
 const isKanjiObj = (obj: IKanjiObj | IVocabObj): obj is IKanjiObj => {

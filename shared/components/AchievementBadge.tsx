@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { Trophy } from 'lucide-react';
-import { useAchievements } from '@/features/Achievements';
+import { useAchievements } from '@/features/Achievements/hooks/useAchievements';
 import { useClick } from '@/shared/hooks';
 
 interface AchievementBadgeProps {

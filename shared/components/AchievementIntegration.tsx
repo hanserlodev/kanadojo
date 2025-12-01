@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import useAchievementStore from '@/features/Achievements';
+import useAchievementStore from '@/features/Achievements/store/useAchievementStore';
 
 /**
  * Component to make achievement store available globally for integration

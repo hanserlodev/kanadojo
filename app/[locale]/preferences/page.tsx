@@ -1,4 +1,4 @@
-import { Settings } from '@/features/Preferences';
+import Settings from '@/features/Preferences/components';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

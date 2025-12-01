@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { AchievementProgress } from '@/features/Progress';
+import AchievementProgress from '@/features/Achievements/components/AchievementProgress';
 import Sidebar from '@/shared/components/Menu/Sidebar';
 
 export const metadata: Metadata = {

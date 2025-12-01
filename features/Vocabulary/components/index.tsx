@@ -8,7 +8,7 @@ import useGridColumns from '@/shared/hooks/useGridColumns';
 import { useClick, useButtonBorderColor } from '@/shared/hooks';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import VocabSetDictionary from '@/features/Vocabulary/components/SetDictionary';
 import { IWord } from '@/shared/types';
 

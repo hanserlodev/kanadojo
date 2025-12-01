@@ -4,11 +4,10 @@ import Return from '@/shared/components/Game/ReturnFromGame';
 import Pick from './Pick';
 import Input from './Input';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import Stats from '@/shared/components/Game/Stats';
 
 const Game = () => {
-
   const showStats = useStatsStore(state => state.showStats);
 
   const resetStats = useStatsStore(state => state.resetStats);

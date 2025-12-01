@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import useAchievementStore, {
   type Achievement
 } from '../store/useAchievementStore';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 
 interface UseAchievementsReturn {
   checkForNewAchievements: () => Achievement[];

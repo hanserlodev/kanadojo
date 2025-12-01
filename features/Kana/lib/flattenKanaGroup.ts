@@ -1,4 +1,4 @@
-import { kana } from '@/features/Kana/data/kana';
+import { kana } from '../data/kana';
 
 export type KanaCharacter = {
   kana: string;

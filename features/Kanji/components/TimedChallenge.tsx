@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import useKanjiStore, {
   type IKanjiObj
 } from '@/features/Kanji/store/useKanjiStore';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import {
   useChallengeTimer,
   useGoalTimers,

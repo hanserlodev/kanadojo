@@ -9,7 +9,7 @@ import confetti from 'canvas-confetti';
 import {
   type Achievement,
   type AchievementRarity
-} from '@/features/Achievements';
+} from '@/features/Achievements/store/useAchievementStore';
 import { useClick } from '@/shared/hooks';
 import { cardBorderStyles, buttonBorderStyles } from '@/shared/lib';
 

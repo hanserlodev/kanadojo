@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import type { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import FuriganaText from '@/shared/components/FuriganaText';
 import { useClick } from '@/shared/hooks';
 

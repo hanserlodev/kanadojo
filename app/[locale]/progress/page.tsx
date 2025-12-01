@@ -1,4 +1,4 @@
-import { ProgressWithSidebar } from '@/features/Progress';
+import ProgressWithSidebar from '@/features/Progress/components/ProgressWithSidebar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

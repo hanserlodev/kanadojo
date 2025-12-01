@@ -4,7 +4,7 @@ import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Keyboard, Heart, Palette, GitBranch } from 'lucide-react';
 import clsx from 'clsx';
 import { useClick } from '@/shared/hooks';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import useCrazyModeStore from '@/features/CrazyMode/store/useCrazyModeStore';
 
 const APP_VERSION = '0.1.6 (alpha)';

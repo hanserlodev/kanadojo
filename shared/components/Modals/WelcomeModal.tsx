@@ -15,10 +15,11 @@ import {
   Dice5
 } from 'lucide-react';
 import useOnboardingStore from '@/shared/store/useOnboardingStore';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import { useClick } from '@/shared/hooks';
 import { buttonBorderStyles, cardBorderStyles } from '@/shared/lib';
-import { themeSets, fontsData as fonts } from '@/features/Preferences';
+import themeSets from '@/features/Preferences/data/themes';
+import fonts from '@/features/Preferences/data/fonts';
 
 const WelcomeModal = () => {
   const { playClick } = useClick();

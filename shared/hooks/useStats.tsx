@@ -1,7 +1,7 @@
 'use client';
 import { useCallback } from 'react';
-import useStatsStore from '@/features/Progress';
-import { useAchievementTrigger } from '@/features/Achievements';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
+import { useAchievementTrigger } from '@/features/Achievements/hooks/useAchievements';
 
 const useStats = () => {
   const { triggerAchievementCheck } = useAchievementTrigger();

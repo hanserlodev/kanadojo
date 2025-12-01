@@ -3,7 +3,7 @@ import { useJapaneseTTS } from '@/shared/hooks';
 import { Volume2, Loader2 } from 'lucide-react';
 import clsx from 'clsx';
 import { buttonBorderStyles } from '@/shared/lib/styles';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 
 interface AudioButtonProps {
   text: string;

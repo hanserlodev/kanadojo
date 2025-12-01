@@ -5,14 +5,14 @@ import themeSets, {
   applyThemeObject
   // hexToHsl
 } from '@/features/Preferences/data/themes';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import clsx from 'clsx';
 import { useClick, useLong } from '@/shared/hooks';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import { useState } from 'react';
 import { Dice5, Plus, Trash2 } from 'lucide-react';
 import { Random } from 'random-js';
-import { useCustomThemeStore } from '@/features/Preferences';
+import { useCustomThemeStore } from '@/features/Preferences/store/useCustomThemeStore';
 
 const random = new Random();
 

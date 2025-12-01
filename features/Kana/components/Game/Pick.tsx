@@ -11,7 +11,7 @@ import { buttonBorderStyles } from '@/shared/lib/styles';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';
 import { useStopwatch } from 'react-timer-hook';
 import useStats from '@/shared/hooks/useStats';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import Stars from '@/shared/components/Game/Stars';
 import SSRAudioButton from '@/shared/components/SSRAudioButton';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';

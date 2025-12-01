@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { toKana, toRomaji } from 'wanakana';
 import { IWord } from '@/shared/types';
 import { cardBorderStyles } from '@/shared/lib/styles';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import FuriganaText from '@/shared/components/FuriganaText';
 
 type SetDictionaryProps = {

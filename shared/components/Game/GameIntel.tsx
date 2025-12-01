@@ -3,7 +3,7 @@ import { SquareCheck, SquareX, Star, Coffee } from 'lucide-react';
 import { MousePointerClick, Keyboard, MousePointer } from 'lucide-react';
 import clsx from 'clsx';
 import { cardBorderStyles } from '@/shared/lib/styles';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 import { miniButtonBorderStyles } from '@/shared/lib/styles';
 import { ChartSpline } from 'lucide-react';
 import { useStopwatch } from 'react-timer-hook';

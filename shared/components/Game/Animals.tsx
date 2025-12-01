@@ -1,5 +1,5 @@
 'use client';
-import useStatsStore from '@/features/Progress';
+import useStatsStore from '@/features/Progress/store/useStatsStore';
 // import { Star } from 'lucide-react';
 import clsx from 'clsx';
 import { animalIcons } from '@/shared/lib/icons';

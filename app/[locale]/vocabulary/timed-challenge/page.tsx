@@ -1,4 +1,4 @@
-import { TimedChallenge as TimedChallengeVocab } from '@/features/Vocabulary';
+import TimedChallengeVocab from '@/features/Vocabulary/components/TimedChallenge';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

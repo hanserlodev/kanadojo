@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import { kana } from '@/features/Kana/data/kana';
 import { useParams } from 'next/navigation';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 
 const sliceRanges = {
   hiraganabase: [0, 10],

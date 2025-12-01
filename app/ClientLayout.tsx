@@ -1,14 +1,14 @@
 'use client';
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
-import usePreferencesStore from '@/features/Preferences';
+import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import useCrazyModeStore from '@/features/CrazyMode/store/useCrazyModeStore';
 import { usePathname } from 'next/navigation';
 import { ScrollRestoration } from 'next-scroll-restoration';
 import WelcomeModal from '@/shared/components/Modals/WelcomeModal';
 import { AchievementNotificationContainer } from '@/shared/components/AchievementNotification';
 import AchievementIntegration from '@/shared/components/AchievementIntegration';
-import { applyTheme } from '@/features/Preferences';
+import { applyTheme } from '@/features/Preferences/data/themes';
 import BackToTop from '@/shared/components/BackToTop';
 import MobileBottomBar from '@/shared/components/BottomBar';
 import { useVisitTracker } from '@/features/Progress/hooks/useVisitTracker';
