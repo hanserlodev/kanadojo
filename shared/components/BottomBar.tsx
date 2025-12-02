@@ -1,7 +1,7 @@
 'use client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Keyboard, Heart, Palette, GitBranch } from 'lucide-react';
+import { Keyboard, Heart, Palette, GitBranch, Type } from 'lucide-react';
 import clsx from 'clsx';
 import { useClick } from '@/shared/hooks/useAudio';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
@@ -12,6 +12,7 @@ const APP_VERSION = '0.1.6 (alpha)';
 const MobileBottomBar = () => {
   const { playClick } = useClick();
   const theme = usePreferencesStore(state => state.theme);
+  const font = usePreferencesStore(state => state.font);
 
   // Crazy Mode Integration
   const isCrazyMode = useCrazyModeStore(state => state.isCrazyMode);
@@ -90,6 +91,11 @@ const MobileBottomBar = () => {
         <span className='flex gap-1'>
           <Palette size={16} />
           {effectiveTheme.replace('-', ' ')}
+        </span>
+        <span>~</span>
+        <span className='flex gap-1'>
+          <Type size={16} />
+          {font.toLowerCase()}
         </span>
         <span>~</span>
         <span className='flex gap-1'>
