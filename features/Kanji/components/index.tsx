@@ -316,7 +316,7 @@ const KanjiCards = () => {
                         className={clsx(
                           'text-2xl flex justify-center items-center gap-2 group',
                           'rounded-xl  hover:cursor-pointer',
-                          'duration-250 transition-all ease-in-out border-b-5',
+                          'duration-250 transition-all ease-in-out border-b-6',
                           'px-2 py-3 max-md:mx-4',
                           isSelected
                             ? 'bg-[var(--secondary-color)] text-[var(--background-color)]'

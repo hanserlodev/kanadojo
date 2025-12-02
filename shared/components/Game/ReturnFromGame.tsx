@@ -96,7 +96,7 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
   return (
     <div
       className={clsx(
-        'flex flex-col w-full md:w-1/2 mt-4 md:mt-8',
+        'flex flex-col w-full md:w-2/3 lg:w-1/2 mt-4 md:mt-8',
         isHidden && 'hidden'
       )}
     >
@@ -134,9 +134,9 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
 
           <button
             className={clsx(
-              'p-2 text-xl flex flex-row justify-center items-center gap-2',
+              'p-2 md:px-6 text-xl flex flex-row justify-center items-center gap-2',
               'hover:cursor-pointer duration-275 rounded-xl',
-              'transition-all ease-in-out border-b-5',
+              'transition-all ease-in-out border-b-6',
               'bg-[var(--main-color)]',
               'text-[var(--background-color)]'
             )}

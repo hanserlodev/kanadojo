@@ -2,8 +2,11 @@
 
 if (process.env.NODE_ENV === 'development') {
   console.log('PostHog client instrumentation disabled in development mode.');
-} else {
-  // Dynamically import PostHog only in production
+} else if (
+  process.env.NODE_ENV === 'production' &&
+  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+) {
+  // Dynamically import PostHog only in actual production deployments (not previews)
   import('posthog-js').then(module => {
     const posthog = module.default;
     const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;

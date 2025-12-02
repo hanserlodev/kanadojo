@@ -209,7 +209,7 @@ const CollectionSelector = () => {
         <button
           className={clsx(
             'py-3 px-16 w-full',
-            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--secondary-color)] border-b-6 text-[var(--background-color)]',
+            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--secondary-color)] border-b-8 text-[var(--background-color)]',
             'flex justify-center'
           )}
           style={{ borderColor: secondaryBorderColor || undefined }}
