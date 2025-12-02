@@ -57,8 +57,12 @@ ProgressBarProps) => {
       <div className='w-full bg-[var(--card-color)] rounded-full h-4 overflow-hidden relative'>
         {/* Progress Indicator */}
         <div
-          className='bg-[var(--secondary-color)] h-4 rounded-full transition-all duration-500 z-10 relative'
-          style={{ width: `${percentage}%` }}
+          className='h-4 rounded-full transition-all duration-500 z-10 relative'
+          style={{
+            width: `${percentage}%`,
+            background:
+              'linear-gradient(to right, var(--secondary-color), var(--main-color))'
+          }}
         />
         {/* Checkpoints */}
         {[25, 50, 75].map(cp => (

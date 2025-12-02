@@ -135,7 +135,7 @@ const CollectionSelector = () => {
               key={collection.name}
               onClick={() => handleCollectionSelect(collection.name)}
               className={clsx(
-                'relative flex-1 px-4 py-3 rounded-lg   transition-all duration-200',
+                'relative flex-1 px-4 py-3 rounded-lg transition-colors duration-0',
                 'flex flex-col items-center justify-center gap-1',
                 isSelected
                   ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm'
