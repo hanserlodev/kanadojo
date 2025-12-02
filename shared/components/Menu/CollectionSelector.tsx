@@ -49,6 +49,8 @@ const CollectionSelector = () => {
   const contentType = removeLocaleFromPath(pathname).slice(1) as ContentType;
   const secondaryBorderColor = useButtonBorderColor('--secondary-color');
 
+  const mainBorderColor = useButtonBorderColor('--main-color');
+
   const isKanji = contentType === 'kanji';
   const isVocab = contentType === 'vocabulary';
 
@@ -135,12 +137,17 @@ const CollectionSelector = () => {
               key={collection.name}
               onClick={() => handleCollectionSelect(collection.name)}
               className={clsx(
-                'relative flex-1 px-4 py-3 rounded-lg transition-colors duration-0',
+                'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
                 'flex flex-col items-center justify-center gap-1',
                 isSelected
-                  ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm'
+                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
                   : 'text-[var(--main-color)]  hover:bg-[var(--border-color)]/50'
               )}
+              style={
+                isSelected
+                  ? { borderColor: mainBorderColor || undefined }
+                  : undefined
+              }
             >
               <div className='flex items-center gap-2'>
                 <span className='text-xl '>{collection.displayName}</span>

@@ -6,6 +6,7 @@ import useVisitStore from '../store/useVisitStore';
 import StreakStats from './StreakStats';
 import StreakGrid from './StreakGrid';
 import type { TimePeriod } from '../lib/streakCalculations';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 const periodOptions: { value: TimePeriod; label: string; icon: string }[] = [
   { value: 'week', label: 'Week', icon: '📅' },
@@ -16,6 +17,7 @@ const periodOptions: { value: TimePeriod; label: string; icon: string }[] = [
 export default function StreakProgress() {
   const { visits, isLoaded, loadVisits } = useVisitStore();
   const [period, setPeriod] = useState<TimePeriod>('week');
+  const mainBorderColor = useButtonBorderColor('--main-color');
 
   useEffect(() => {
     if (!isLoaded) {
@@ -44,7 +46,7 @@ export default function StreakProgress() {
 
       {/* Period Selector - Improved Design */}
       <div className='flex justify-center'>
-        <div className='inline-flex rounded-xl bg-[var(--card-color)] border border-[var(--border-color)] p-1.5 gap-1'>
+        <div className='inline-flex rounded-2xl bg-[var(--card-color)] border border-[var(--border-color)] p-1.5 gap-1'>
           {periodOptions.map(option => (
             <button
               key={option.value}
@@ -53,9 +55,14 @@ export default function StreakProgress() {
                 'relative px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                 'flex items-center gap-2',
                 period === option.value
-                  ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm'
+                  ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm border-b-4'
                   : 'text-[var(--secondary-color)] hover:text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
               )}
+              style={
+                period === option.value
+                  ? { borderColor: mainBorderColor || undefined }
+                  : undefined
+              }
             >
               <span className='text-base'>{option.icon}</span>
               <span>{option.label}</span>
