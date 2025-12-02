@@ -45,7 +45,7 @@ const ProgressWithSidebar = () => {
                 key={option.value}
                 onClick={() => setCurrentView(option.value)}
                 className={clsx(
-                  'relative px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+                  'relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200',
                   'flex items-center gap-2',
                   currentView === option.value
                     ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm border-b-4'

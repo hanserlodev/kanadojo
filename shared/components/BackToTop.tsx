@@ -64,7 +64,8 @@ export default function BackToTop() {
         'inline-flex items-center justify-center rounded-full ',
         'p-2 md:p-3 shadow-lg transition-all duration-200 ',
         'bg-[var(--card-color)] text-[var(--main-color)] ',
-        'hover:bg-[var(--main-color)] hover:text-[var(--background-color)]'
+        'hover:bg-[var(--main-color)] hover:text-[var(--background-color)]',
+        'hover:cursor-pointer'
       )}
     >
       <ChevronsUp size={32} strokeWidth={2.5} />

@@ -9,10 +9,12 @@ import { useClick } from '@/shared/hooks/useAudio';
 import { usePathname } from 'next/navigation';
 import { useShallow } from 'zustand/react/shallow';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 const GameModes = () => {
   const pathname = usePathname();
   const pathWithoutLocale = removeLocaleFromPath(pathname);
+  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const { playClick } = useClick();
 
@@ -60,87 +62,79 @@ const GameModes = () => {
   const gameModes = ['Pick', 'Anti-Pick', 'Type'];
 
   return (
-    <fieldset
-      className={clsx(
-        'rounded-2xl bg-[var(--card-color)]',
-        'duration-250',
-        'transition-all ease-in-out',
-        'flex flex-col md:flex-row',
-        'w-full',
-        'max-md:border-b-4 max-md:border-[var(--border-color)]'
-      )}
-    >
-      {gameModes.map((gameMode, i) => (
-        <Fragment key={gameMode}>
-          <label
-            className={clsx(
-              'flex justify-center items-center',
-              'text-[var(--secondary-color)]',
-              'w-full py-2',
-              'hover:cursor-pointer',
-              // 'hover:bg-[var(--border-color)]',
-              i === 0 && 'rounded-tl-2xl rounded-bl-2xl',
-              i === gameModes.length - 1 && 'rounded-tr-2xl rounded-br-2xl',
-              'duration-250',
+    <div className='flex rounded-2xl bg-[var(--card-color)]  border-[var(--border-color)] p-1.5 gap-1.5 flex-col md:flex-row'>
+      {gameModes.map(gameMode => {
+        const isSelected = gameMode === selectedGameMode;
 
-              'md:border-b-4 border-[var(--border-color)]',
-              gameMode === selectedGameMode &&
-                'md:border-[var(--secondary-color)]/80'
+        return (
+          <button
+            key={gameMode}
+            onClick={() => {
+              playClick();
+              setSelectedGameMode(gameMode);
+            }}
+            className={clsx(
+              'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
+              'flex flex-col items-center justify-center gap-2',
+              isSelected
+                ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
+                : 'text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
             )}
-            onClick={() => playClick()}
+            style={
+              isSelected
+                ? { borderColor: mainBorderColor || undefined }
+                : undefined
+            }
           >
-            <input
-              type='radio'
-              name='selectedGameMode'
-              onChange={() => setSelectedGameMode(gameMode)}
-              className='hidden'
-            />
-            <span className='text-lg font-medium py-2 px-1 sm:px-2 text-center flex flex-row justify-center items-center gap-2'>
-              {gameMode === selectedGameMode ? (
-                <CircleCheck className='text-[var(--main-color)]' />
-              ) : (
-                <Circle className='text-[var(--border-color)]' />
-              )}
-              <span>{gameMode}</span>
+            <div className='flex items-center gap-2'>
+              <span className='text-lg font-medium'>{gameMode}</span>
               {gameMode.toLowerCase() === 'pick' && (
                 <MousePointerClick
-                  size={22}
-                  className='text-[var(--main-color)] motion-safe:animate-pulse'
+                  size={20}
+                  className={clsx(
+                    isSelected
+                      ? 'text-[var(--background-color)]'
+                      : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                  )}
                 />
               )}
               {gameMode.toLowerCase() === 'anti-pick' && (
                 <MousePointerClick
-                  size={22}
-                  className=' scale-x-[-1] text-[var(--main-color)] motion-safe:animate-pulse'
+                  size={20}
+                  className={clsx(
+                    'scale-x-[-1]',
+                    isSelected
+                      ? 'text-[var(--background-color)]'
+                      : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                  )}
                 />
               )}
               {gameMode.toLowerCase() === 'type' && (
                 <Keyboard
-                  size={22}
-                  className='text-[var(--main-color)] motion-safe:animate-pulse'
+                  size={20}
+                  className={clsx(
+                    isSelected
+                      ? 'text-[var(--background-color)]'
+                      : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                  )}
                 />
               )}
               {gameMode.toLowerCase() === 'anti-type' && (
                 <Keyboard
-                  size={22}
-                  className='scale-y-[-1] text-[var(--main-color)] motion-safe:animate-pulse'
+                  size={20}
+                  className={clsx(
+                    'scale-y-[-1]',
+                    isSelected
+                      ? 'text-[var(--background-color)]'
+                      : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                  )}
                 />
               )}
-            </span>
-          </label>
-
-          {i < gameModes.length - 1 && (
-            <div
-              className={clsx(
-                'md:border-l-1 md:h-auto md:w-0',
-                'border-[var(--border-color)]',
-                'border-t-1 w-full border-[var(--border-color)]'
-              )}
-            />
-          )}
-        </Fragment>
-      ))}
-    </fieldset>
+            </div>
+          </button>
+        );
+      })}
+    </div>
   );
 };
 
