@@ -18,7 +18,7 @@ import {
 } from '@/shared/lib/unitSets';
 import { useClick } from '@/shared/hooks/useAudio';
 import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
-import { CircleCheck, Circle, Trash } from 'lucide-react';
+import { CircleCheck, Trash } from 'lucide-react';
 import { useMemo } from 'react';
 
 type CollectionLevel = 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
@@ -116,73 +116,56 @@ const CollectionSelector = () => {
 
       return {
         name: level,
-        displayName: `Unit ${index + 1}, Sets ${startSet}-${endSet}`
+        displayName: `Unit ${index + 1}`,
+        subtitle: `Levels ${startSet}-${endSet}`,
+        jlpt: level.toUpperCase()
       };
     });
   }, [sets]);
 
   return (
     <div className='flex flex-col'>
-      {/* Collection Buttons */}
-      <div
-        className={clsx(
-          'rounded-tl-2xl rounded-tr-2xl bg-[var(--card-color)]',
-          'flex flex-col md:flex-row w-full',
-          'border-b-1 border-[var(--border-color)]',
-          'transition-all duration-250 ease-in-out'
-        )}
-      >
-        {collections.map((collection, index) => {
-          // Hide N1 vocab (not available yet)
-          // if (isVocab && collection.name === 'n1') return null;
-
-          const isFirst = index === 0;
-          const isLast = index === collections.length - 1;
+      {/* Modern Toggle-Style Unit Selector */}
+      <div className='flex rounded-tl-2xl rounded-tr-2xl bg-[var(--card-color)] border-b-1 border-[var(--border-color)] p-1.5 gap-1.5 flex-col md:flex-row'>
+        {collections.map(collection => {
           const isSelected = collection.name === selectedCollection;
 
           return (
-            <div
+            <button
               key={collection.name}
-              className='flex flex-col md:flex-row w-full'
-            >
-              <button
-                className={clsx(
-                  'flex justify-center items-center gap-2.5 py-6 w-full',
-                  'text-[var(--main-color)] text-xl',
-                  'hover:cursor-pointer transition-all duration-250',
-                  isFirst &&
-                    'max-md:rounded-tl-2xl max-md:rounded-tr-2xl md:rounded-tl-2xl md:rounded-bl-2xl',
-                  isLast &&
-                    'max-md:rounded-bl-2xl max-md:rounded-br-2xl md:rounded-tr-2xl md:rounded-br-2xl'
-                )}
-                onClick={() => handleCollectionSelect(collection.name)}
-              >
-                {isSelected ? (
-                  <CircleCheck className='text-[var(--secondary-color)]' />
-                ) : (
-                  <Circle className='text-[var(--border-color)]' />
-                )}
-                <span className='text-2xl'>
-                  <span>{collection.displayName.split(', ')[0]}</span>
-                  &nbsp;
-                  <span className='text-[var(--secondary-color)] text-xs'>
-                    {collection.name.toUpperCase()}
-                  </span>
-                </span>
-              </button>
-
-              {/* Divider between buttons */}
-              {index < collections.length - 1 && (
-                <div
-                  className={clsx(
-                    'border-[var(--border-color)]',
-                    'md:border-l-1 md:h-auto md:w-0',
-                    'border-t-1 w-full max-md:block',
-                    isVocab && collection.name === 'n1' && 'hidden'
-                  )}
-                />
+              onClick={() => handleCollectionSelect(collection.name)}
+              className={clsx(
+                'relative flex-1 px-4 py-3 rounded-lg   transition-all duration-200',
+                'flex flex-col items-center justify-center gap-1',
+                isSelected
+                  ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm'
+                  : 'text-[var(--main-color)]  hover:bg-[var(--border-color)]/50'
               )}
-            </div>
+            >
+              <div className='flex items-center gap-2'>
+                <span className='text-xl '>{collection.displayName}</span>
+                <span
+                  className={clsx(
+                    'text-xs  px-1.5 py-0.5 rounded',
+                    isSelected
+                      ? 'bg-[var(--border-color)] text-[var(--secondary-color)]'
+                      : 'bg-[var(--border-color)] text-[var(--secondary-color)]'
+                  )}
+                >
+                  {collection.jlpt}
+                </span>
+              </div>
+              <span
+                className={clsx(
+                  'text-xs',
+                  isSelected
+                    ? 'text-[var(--background-color)]/80'
+                    : 'text-[var(--secondary-color)]/80'
+                )}
+              >
+                {collection.subtitle}
+              </span>
+            </button>
           );
         })}
       </div>
