@@ -22,6 +22,7 @@ const MobileBottomBar = () => {
 
   return (
     <div
+      id='main-bottom-bar'
       className={clsx(
         'fixed bottom-0 left-0 right-0 z-50',
         'max-md:hidden', // Only visible on screens bigger than md

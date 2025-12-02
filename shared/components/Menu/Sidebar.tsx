@@ -39,6 +39,7 @@ const Sidebar = () => {
 
   return (
     <div
+      id='main-sidebar'
       className={clsx(
         'flex lg:flex-col lg:items-start lg:gap-2',
         'lg:w-1/5 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto',

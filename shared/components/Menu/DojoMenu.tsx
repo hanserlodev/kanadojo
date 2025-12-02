@@ -49,7 +49,7 @@ const DojoMenu = () => {
   }, [pathWithoutLocale]);
 
   return (
-    <div className="min-h-[100dvh] max-w-[100dvw] lg:pr-20 flex gap-4">
+    <div className='min-h-[100dvh] max-w-[100dvw] lg:pr-20 flex gap-4'>
       <Sidebar />
       <div
         className={clsx(
