@@ -325,14 +325,6 @@ const themeSets: ThemeGroup[] = [
         secondaryColor: 'oklch(71.37% 0.1905 307.67 / 1)'
       },
       {
-        id: 'cosmic-prism',
-        backgroundColor: 'oklch(21.21% 0.0748 318.23 / 1)',
-        cardColor: 'oklch(28.51% 0.1183 317.68 / 1)',
-        borderColor: 'oklch(38.20% 0.1663 317.40 / 1)',
-        mainColor: 'oklch(72.27% 0.1844 3.12 / 1)',
-        secondaryColor: 'oklch(90.99% 0.1311 193.52 / 1)'
-      },
-      {
         id: 'opaline-zodiac',
         backgroundColor: 'oklch(26.41% 0.0350 226.27 / 1)',
         cardColor: 'oklch(33.67% 0.0510 227.36 / 1)',
@@ -355,14 +347,6 @@ const themeSets: ThemeGroup[] = [
         borderColor: 'oklch(36.62% 0.0863 264.97 / 1)',
         mainColor: 'oklch(83.66% 0.1106 224.33 / 1)',
         secondaryColor: 'oklch(97.38% 0.1589 109.02 / 1)'
-      },
-      {
-        id: 'rose-nebula',
-        backgroundColor: 'oklch(23.94% 0.0531 333.58 / 1)',
-        cardColor: 'oklch(29.98% 0.0728 333.84 / 1)',
-        borderColor: 'oklch(38.55% 0.1000 334.04 / 1)',
-        mainColor: 'oklch(70.55% 0.1483 6.90 / 1)',
-        secondaryColor: 'oklch(72.31% 0.1853 307.81 / 1)'
       },
       {
         id: 'azure-twilight',
@@ -469,14 +453,6 @@ const themeSets: ThemeGroup[] = [
         secondaryColor: 'oklch(70.60% 0.1901 307.64 / 1)'
       },
       {
-        id: 'blue-emberveil',
-        backgroundColor: 'oklch(20.77% 0.0383 252.95 / 1)',
-        cardColor: 'oklch(26.42% 0.0597 319.39 / 1)',
-        borderColor: 'oklch(38.45% 0.0974 319.35 / 1)',
-        mainColor: 'oklch(81.14% 0.1094 230.16 / 1)',
-        secondaryColor: 'oklch(71.88% 0.1772 43.31 / 1)'
-      },
-      {
         id: 'nautilus-star',
         backgroundColor: 'oklch(19.37% 0.0229 240.54 / 1)',
         cardColor: 'oklch(28.27% 0.0410 241.32 / 1)',
@@ -539,14 +515,6 @@ const themeSets: ThemeGroup[] = [
         borderColor: 'oklch(34.02% 0.0713 292.14 / 1)',
         mainColor: 'oklch(68.33% 0.1789 294.23 / 1)',
         secondaryColor: 'oklch(88.93% 0.1602 165.64 / 1)'
-      },
-      {
-        id: 'azure-mirage',
-        backgroundColor: 'oklch(21.30% 0.0376 214.94 / 1)',
-        cardColor: 'oklch(34.64% 0.0610 218.40 / 1)',
-        borderColor: 'oklch(49.62% 0.0890 219.80 / 1)',
-        mainColor: 'oklch(68.80% 0.2066 305.48 / 1)',
-        secondaryColor: 'oklch(92.90% 0.1558 100.57 / 1)'
       },
       {
         id: 'cobalt-lumen',
