@@ -191,7 +191,7 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
             className={clsx(
               'fixed z-40',
               'bg-[var(--background-color)]',
-              'border-t border-[var(--border-color)]',
+              'border-t-2 border-[var(--border-color)]',
               'py-3 px-4'
             )}
           >
