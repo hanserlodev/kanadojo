@@ -17,7 +17,6 @@ import {
   N1VocabLength
 } from '@/shared/lib/unitSets';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { CircleCheck, Trash, MousePointerClick, Keyboard } from 'lucide-react';
 import { useMemo } from 'react';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
@@ -49,9 +48,6 @@ const CollectionSelector = () => {
   const pathname = usePathname();
   const pathWithoutLocale = removeLocaleFromPath(pathname);
   const contentType = pathWithoutLocale.slice(1) as ContentType;
-  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
-
-  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const isKanji = contentType === 'kanji';
   const isVocab = contentType === 'vocabulary';
@@ -156,14 +152,9 @@ const CollectionSelector = () => {
                 'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
                 'flex flex-col items-center justify-center gap-1',
                 isSelected
-                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
+                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4 border-[var(--main-color-accent)]'
                   : 'text-[var(--main-color)]  hover:bg-[var(--border-color)]/50'
               )}
-              style={
-                isSelected
-                  ? { borderColor: mainBorderColor || undefined }
-                  : undefined
-              }
             >
               <div className='flex items-center gap-2'>
                 <span className='text-xl '>{collection.displayName}</span>
@@ -215,10 +206,9 @@ const CollectionSelector = () => {
         <button
           className={clsx(
             'py-3 px-16 w-full',
-            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--secondary-color)]/90 border-b-8 text-[var(--background-color)]',
+            'rounded-xl duration-275 hover:cursor-pointer bg-[var(--secondary-color)]/80 border-b-8 border-[var(--secondary-color-accent)] text-[var(--background-color)]',
             'flex justify-center'
           )}
-          style={{ borderColor: secondaryBorderColor || undefined }}
           onClick={handleClear}
           aria-label='Clear selected levels'
         >
@@ -242,14 +232,9 @@ const CollectionSelector = () => {
                 'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
                 'flex flex-col items-center justify-center gap-2',
                 isSelected
-                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
+                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4 border-[var(--main-color-accent)]'
                   : 'text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
               )}
-              style={
-                isSelected
-                  ? { borderColor: mainBorderColor || undefined }
-                  : undefined
-              }
             >
               <div className='flex items-center gap-2'>
                 <span className='text-lg font-medium'>{gameMode}</span>

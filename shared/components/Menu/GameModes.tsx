@@ -9,12 +9,10 @@ import { useClick } from '@/shared/hooks/useAudio';
 import { usePathname } from 'next/navigation';
 import { useShallow } from 'zustand/react/shallow';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 const GameModes = () => {
   const pathname = usePathname();
   const pathWithoutLocale = removeLocaleFromPath(pathname);
-  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const { playClick } = useClick();
 
@@ -77,14 +75,9 @@ const GameModes = () => {
               'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
               'flex flex-col items-center justify-center gap-2',
               isSelected
-                ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
+                ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4 border-[var(--main-color-accent)]'
                 : 'text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
             )}
-            style={
-              isSelected
-                ? { borderColor: mainBorderColor || undefined }
-                : undefined
-            }
           >
             <div className='flex items-center gap-2'>
               <span className='text-lg font-medium'>{gameMode}</span>

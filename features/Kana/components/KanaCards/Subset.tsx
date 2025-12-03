@@ -6,7 +6,6 @@ import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 const FINAL_CHARACTERS = [
   'h.b.w',
@@ -29,7 +28,6 @@ interface SubsetProps {
 const Subset = ({ sliceRange, subgroup }: SubsetProps) => {
   const { playClick } = useClick();
   const [focusedRow, setFocusedRow] = useState('');
-  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const kanaGroups = kana.slice(sliceRange[0], sliceRange[1]);
   const kanaGroupIndices = useKanaStore(state => state.kanaGroupIndices);
@@ -143,10 +141,9 @@ const Subset = ({ sliceRange, subgroup }: SubsetProps) => {
             'p-2 font-normal text-lg w-full hover:cursor-pointer',
             'rounded-xl bg-[var(--main-color)] text-[var(--background-color)]',
             'flex flex-row justify-center items-center gap-1.5',
-            'border-b-6'
+            'border-b-6 border-[var(--main-color-accent)]'
             // 'border-r-3 border-l-3 border-t-2'
           )}
-          style={{ borderColor: mainBorderColor || undefined }}
           onClick={e => {
             e.currentTarget.blur();
             selectAllInSubset();

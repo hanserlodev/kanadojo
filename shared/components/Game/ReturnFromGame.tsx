@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { Link } from '@/core/i18n/routing';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { useStopwatch } from 'react-timer-hook';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
 import {
@@ -51,7 +50,6 @@ interface ReturnProps {
 const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
   const totalTimeStopwatch = useStopwatch({ autoStart: false });
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
-  const mainBorderColor = useButtonBorderColor('--main-color');
 
   const saveSession = useStatsStore(s => s.saveSession);
   const numCorrectAnswers = useStatsStore(s => s.numCorrectAnswers);
@@ -136,11 +134,10 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
             className={clsx(
               'p-2 md:px-6 text-xl flex flex-row justify-center items-center gap-2',
               'hover:cursor-pointer duration-275 rounded-xl',
-              'transition-all ease-in-out border-b-6',
+              'transition-all ease-in-out border-b-6 border-[var(--main-color-accent)]',
               'bg-[var(--main-color)]',
               'text-[var(--background-color)]'
             )}
-            style={{ borderColor: mainBorderColor || undefined }}
             onClick={handleShowStats}
           >
             <ChartSpline size={24} />

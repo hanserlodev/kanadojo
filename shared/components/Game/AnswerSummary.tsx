@@ -5,7 +5,6 @@ import { IVocabObj } from '@/features/Vocabulary/store/useVocabStore';
 import { CircleArrowRight } from 'lucide-react';
 import { Dispatch, SetStateAction, useRef, useEffect } from 'react';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import FuriganaText from '@/shared/components/FuriganaText';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 
@@ -30,8 +29,6 @@ const ContinueButton = ({
   onClick: () => void;
   disabled: boolean;
 }) => {
-  const mainBorderColor = useButtonBorderColor('--main-color');
-
   return (
     <div
       className={clsx(
@@ -51,9 +48,8 @@ const ContinueButton = ({
           // buttonBorderStyles,
           'flex flex-row justify-center items-end gap-2 ',
           'text-[var(--background-color)] bg-[var(--main-color)]',
-          'border-b-8 rounded-2xl'
+          'border-b-8 border-[var(--main-color-accent)] rounded-2xl'
         )}
-        style={{ borderColor: mainBorderColor || undefined }}
         onClick={onClick}
         disabled={disabled}
       >

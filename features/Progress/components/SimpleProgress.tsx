@@ -2,7 +2,6 @@
 import useStatsStore from '@/features/Progress/store/useStatsStore';
 import { Trophy, Target, TrendingUp, Trash } from 'lucide-react';
 import clsx from 'clsx';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 // import yodaCage from "./yodaCage.png";
 
 // Simple Card component to replace the missing UI component
@@ -49,7 +48,6 @@ const CardContent = ({ children }: { children: React.ReactNode }) => (
 
 export default function SimpleProgress() {
   const { allTimeStats, clearAllProgress } = useStatsStore();
-  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
 
   const totalQuestions =
     allTimeStats.totalCorrect + allTimeStats.totalIncorrect;
@@ -89,10 +87,9 @@ export default function SimpleProgress() {
           onClick={clearAllProgress}
           className={clsx(
             'py-2 px-4',
-            'rounded-2xl duration-200 hover:cursor-pointer bg-[var(--secondary-color)] border-b-4 text-[var(--background-color)]',
+            'rounded-2xl duration-200 hover:cursor-pointer bg-[var(--secondary-color)] border-b-4 border-[var(--secondary-color-accent)] text-[var(--background-color)]',
             'flex items-center gap-2 text-sm'
           )}
-          style={{ borderColor: secondaryBorderColor || undefined }}
         >
           <Trash className='h-4 w-4' />
           Reset Progress

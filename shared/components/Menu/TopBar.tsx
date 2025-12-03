@@ -9,16 +9,12 @@ import usePreferencesStore from '@/features/Preferences/store/usePreferencesStor
 import { useClick } from '@/shared/hooks/useAudio';
 import { Play, Timer } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
-
 interface ITopBarProps {
   currentDojo: string;
 }
 
 const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
   const hotkeysOn = usePreferencesStore(state => state.hotkeysOn);
-  const mainBorderColor = useButtonBorderColor('--main-color');
-  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
 
   const { playClick } = useClick();
 
@@ -212,10 +208,9 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
                       'w-full h-12 px-4 flex flex-row justify-center items-center gap-2',
                       'bg-[var(--secondary-color)] text-[var(--background-color)]',
                       'rounded-2xl transition-colors duration-200',
-                      'border-b-6 shadow-sm',
+                      'border-b-6 border-[var(--secondary-color-accent)] shadow-sm',
                       'hover:cursor-pointer'
                     )}
-                    style={{ borderColor: secondaryBorderColor || undefined }}
                     onClick={() => playClick()}
                   >
                     <Timer size={20} />
@@ -235,14 +230,9 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
                     'font-medium border-b-6 shadow-sm',
                     'hover:cursor-pointer',
                     selectedGameMode && isFilled
-                      ? 'bg-[var(--main-color)] text-[var(--background-color)]'
+                      ? 'bg-[var(--main-color)] text-[var(--background-color)] border-[var(--main-color-accent)]'
                       : 'bg-[var(--card-color)] text-[var(--border-color)] cursor-not-allowed'
                   )}
-                  style={
-                    selectedGameMode && isFilled
-                      ? { borderColor: mainBorderColor || undefined }
-                      : undefined
-                  }
                   onClick={e => {
                     e.currentTarget.blur();
                     playClick();

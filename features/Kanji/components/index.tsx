@@ -6,7 +6,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import useGridColumns from '@/shared/hooks/useGridColumns';
 import { useClick } from '@/shared/hooks/useAudio';
-import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 import { ChevronUp, CircleCheck, Circle, Filter, FilterX } from 'lucide-react';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
 import useStatsStore from '@/features/Progress/store/useStatsStore';
@@ -50,7 +49,6 @@ type KanjiCollectionMeta = {
 // ✅ REMOVED: Intersection Observer animation variants to fix bug where users need to scroll to see first sets
 
 const KanjiCards = () => {
-  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
   const selectedKanjiCollectionName = useKanjiStore(
     state => state.selectedKanjiCollection
   );
@@ -319,14 +317,9 @@ const KanjiCards = () => {
                           'duration-250 transition-all ease-in-out border-b-6',
                           'px-2 py-3 max-md:mx-4',
                           isSelected
-                            ? 'bg-[var(--secondary-color)] text-[var(--background-color)]'
+                            ? 'bg-[var(--secondary-color)] text-[var(--background-color)] border-[var(--secondary-color-accent)]'
                             : 'bg-[var(--background-color)] border-[var(--border-color)] hover:border-[var(--main-color)]/80'
                         )}
-                        style={
-                          isSelected
-                            ? { borderColor: secondaryBorderColor || undefined }
-                            : undefined
-                        }
                         onClick={e => {
                           e.currentTarget.blur();
                           playClick();
