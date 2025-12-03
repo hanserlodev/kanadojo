@@ -7,7 +7,7 @@ import { useClick } from '@/shared/hooks/useAudio';
 import usePreferencesStore from '@/features/Preferences/store/usePreferencesStore';
 import useCrazyModeStore from '@/features/CrazyMode/store/useCrazyModeStore';
 
-const APP_VERSION = '0.1.6 (alpha)';
+const APP_VERSION = '0.1.7 (alpha)';
 
 const MobileBottomBar = () => {
   const { playClick } = useClick();

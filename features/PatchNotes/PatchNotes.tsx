@@ -33,7 +33,7 @@ const PatchNotes = async () => {
             <PostWrapper
               key={index}
               textContent={patch.changes
-                .map(change => `• ${change}`)
+                .map(change => `- ${change}`)
                 .join('\n')}
               tag={`v${patch.version}`}
               date={new Date(patch.date).toISOString()}
