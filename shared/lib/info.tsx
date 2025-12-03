@@ -66,8 +66,8 @@ export default function translationGen(t: (key: string) => string) {
             component of the Japanese writing system - the kanji characters.
           </p>
           <p className='text-lg text-[var(--secondary-color)]'>
-            To begin, select at least 1 set, select or change the training mode,
-            then hit <b>Go!</b> below and start training now!
+            To begin, select at least 1 set, select your training mode, then hit{' '}
+            <b>Go!</b> below and start training!
           </p>
           <p className='text-lg italic'>
             New: click on a kanji character to find out more about it on{' '}
@@ -92,8 +92,8 @@ export default function translationGen(t: (key: string) => string) {
             words used in day-to-day Japanese.
           </p>
           <p className='text-lg text-[var(--secondary-color)]'>
-            To begin, select at least 1 set, select or change the training mode,
-            then hit <b>Go!</b> below and start training now!
+            To begin, select at least 1 set, select your training mode, then hit{' '}
+            <b>Go!</b> below and start training!
           </p>
         </>
       )

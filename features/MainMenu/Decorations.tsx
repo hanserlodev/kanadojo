@@ -151,11 +151,11 @@ const Decorations = ({ expandDecorations }: { expandDecorations: boolean }) => {
   return (
     <div
       className={clsx(
-        'fixed inset-0 overflow-hidden pointer-events-none flex items-center justify-center',
+        'fixed inset-0 overflow-hidden pointer-events-none ',
         expandDecorations ? 'opacity-100' : 'opacity-30'
       )}
     >
-      <div className='grid grid-cols-28 gap-0.5 p-2 h-full justify-center'>
+      <div className='grid grid-cols-28 gap-0.5 p-2 h-full w-full'>
         {kanjiList.map((char, index) => (
           <KanjiCharacter char={char} key={index} />
         ))}
