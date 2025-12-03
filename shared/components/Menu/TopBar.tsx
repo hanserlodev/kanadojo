@@ -9,6 +9,7 @@ import usePreferencesStore from '@/features/Preferences/store/usePreferencesStor
 import { useClick } from '@/shared/hooks/useAudio';
 import { Play, Timer } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
 
 interface ITopBarProps {
   currentDojo: string;
@@ -16,6 +17,8 @@ interface ITopBarProps {
 
 const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
   const hotkeysOn = usePreferencesStore(state => state.hotkeysOn);
+  const mainBorderColor = useButtonBorderColor('--main-color');
+  const secondaryBorderColor = useButtonBorderColor('--secondary-color');
 
   const { playClick } = useClick();
 
@@ -98,8 +101,6 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
     const updateLayout = () => {
       const sidebar = document.getElementById('main-sidebar');
       const bottomBar = document.getElementById('main-bottom-bar');
-      const placeholder = placeholderRef.current;
-      const parent = placeholder?.parentElement;
       const width = window.innerWidth;
 
       let bottom = 0;
@@ -120,11 +121,13 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
       }
 
       // 2. Calculate Horizontal Layout
-      if (width >= 1024 && parent) {
-        // Desktop: Match parent width/position exactly
-        const rect = parent.getBoundingClientRect();
-        left = rect.left;
-        barWidth = rect.width;
+      if (width >= 1024) {
+        // Desktop: Stretch from sidebar's right edge to viewport right edge
+        if (sidebar) {
+          const sidebarRect = sidebar.getBoundingClientRect();
+          left = sidebarRect.right;
+          barWidth = width - sidebarRect.right;
+        }
       } else {
         // Mobile: Full width
         left = 0;
@@ -137,15 +140,15 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
     // Initial update
     updateLayout();
 
-    // Setup ResizeObserver on parent to catch flex layout changes
+    // Setup ResizeObserver on sidebar for layout changes
     let observer: ResizeObserver | null = null;
-    const parent = placeholderRef.current?.parentElement;
+    const sidebar = document.getElementById('main-sidebar');
 
-    if (parent) {
+    if (sidebar) {
       observer = new ResizeObserver(() => {
         updateLayout();
       });
-      observer.observe(parent);
+      observer.observe(sidebar);
     }
 
     // Also listen to window resize for global changes (like breakpoints)
@@ -188,69 +191,67 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
             className={clsx(
               'fixed z-40',
               'bg-[var(--background-color)]',
-              'border-t border-[var(--border-color)]'
+              'border-t border-[var(--border-color)]',
+              'py-3 px-4'
             )}
           >
             <div
               className={clsx(
-                'flex flex-row items-center justify-center',
-                'w-full max-w-4xl mx-auto',
-                'h-16 px-4 gap-4'
+                'flex flex-row items-center justify-center gap-3',
+                'w-full max-w-4xl mx-auto'
               )}
             >
               {/* Timed Challenge Button */}
               {showTimedChallenge && (
                 <Link
                   href={`${currentDojo}/timed-challenge`}
-                  className='flex-1 max-w-[200px] h-10'
+                  className='flex-1 max-w-sm'
                 >
                   <button
                     className={clsx(
-                      'w-full h-full px-4 flex flex-row justify-center items-center gap-2',
-                      'text-[var(--secondary-color)]',
-                      'hover:text-[var(--main-color)] hover:bg-[var(--card-color)]',
-                      'rounded-lg transition-all duration-200',
-                      'font-medium text-sm'
+                      'w-full h-12 px-4 flex flex-row justify-center items-center gap-2',
+                      'bg-[var(--secondary-color)] text-[var(--background-color)]',
+                      'rounded-2xl transition-colors duration-200',
+                      'border-b-6 shadow-sm'
                     )}
+                    style={{ borderColor: secondaryBorderColor || undefined }}
                     onClick={() => playClick()}
                   >
-                    <Timer size={18} />
+                    <Timer size={20} />
                     <span className='whitespace-nowrap'>Timed Challenge</span>
                   </button>
                 </Link>
               )}
 
-              {/* Divider */}
-              {showTimedChallenge && (
-                <div className='h-6 w-[1px] bg-[var(--border-color)]' />
-              )}
-
-              {/* Go Button */}
-              <Link
-                href={`/${currentDojo}/train`}
-                className='flex-1 max-w-[200px] h-10'
-              >
+              {/* Start Training Button */}
+              <Link href={`/${currentDojo}/train`} className='flex-1 max-w-sm'>
                 <button
                   disabled={!selectedGameMode || !isFilled}
                   ref={buttonRef}
                   className={clsx(
-                    'w-full h-full px-6 flex flex-row justify-center items-center gap-2',
-                    'rounded-lg transition-all duration-200',
+                    'w-full h-12 px-6 flex flex-row justify-center items-center gap-2',
+                    'rounded-2xl transition-colors duration-200',
+                    'font-medium border-b-6 shadow-sm',
                     selectedGameMode && isFilled
-                      ? 'bg-[var(--main-color)] text-white shadow-md shadow-[var(--main-color)]/20 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]'
-                      : 'text-[var(--border-color)] cursor-not-allowed'
+                      ? 'bg-[var(--main-color)] text-[var(--background-color)]'
+                      : 'bg-[var(--card-color)] text-[var(--border-color)] cursor-not-allowed'
                   )}
+                  style={
+                    selectedGameMode && isFilled
+                      ? { borderColor: mainBorderColor || undefined }
+                      : undefined
+                  }
                   onClick={e => {
                     e.currentTarget.blur();
                     playClick();
                   }}
                 >
-                  <span className='font-bold text-base'>Start</span>
+                  <span className=''>Start Training</span>
                   <Play
                     className={clsx(
                       selectedGameMode && isFilled && 'fill-current'
                     )}
-                    size={18}
+                    size={20}
                   />
                 </button>
               </Link>

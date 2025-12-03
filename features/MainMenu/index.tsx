@@ -66,7 +66,7 @@ const MainMenu = () => {
       href: '/kana'
     },
     {
-      name_en: 'Vocabulary',
+      name_en: 'Vocab',
       name_ja: '語',
       href: '/vocabulary'
     },

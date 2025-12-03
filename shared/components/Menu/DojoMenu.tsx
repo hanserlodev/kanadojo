@@ -64,7 +64,7 @@ const DojoMenu = () => {
         {(pathWithoutLocale === '/kanji' ||
           pathWithoutLocale === '/vocabulary') && <CollectionSelector />}
         <TopBar currentDojo={pathWithoutLocale.slice(1)} />
-        {showGameModes && <GameModes />}
+        {showGameModes && pathWithoutLocale === '/kana' && <GameModes />}
 
         {pathWithoutLocale === '/kana' ? (
           <KanaCards />

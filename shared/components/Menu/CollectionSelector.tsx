@@ -18,8 +18,9 @@ import {
 } from '@/shared/lib/unitSets';
 import { useClick } from '@/shared/hooks/useAudio';
 import { useButtonBorderColor } from '@/shared/hooks/useButtonBorderColor';
-import { CircleCheck, Trash } from 'lucide-react';
+import { CircleCheck, Trash, MousePointerClick, Keyboard } from 'lucide-react';
 import { useMemo } from 'react';
+import useKanaStore from '@/features/Kana/store/useKanaStore';
 
 type CollectionLevel = 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
 type ContentType = 'kanji' | 'vocabulary';
@@ -46,7 +47,8 @@ const VOCAB_SETS = {
 const CollectionSelector = () => {
   const { playClick } = useClick();
   const pathname = usePathname();
-  const contentType = removeLocaleFromPath(pathname).slice(1) as ContentType;
+  const pathWithoutLocale = removeLocaleFromPath(pathname);
+  const contentType = pathWithoutLocale.slice(1) as ContentType;
   const secondaryBorderColor = useButtonBorderColor('--secondary-color');
 
   const mainBorderColor = useButtonBorderColor('--main-color');
@@ -60,7 +62,9 @@ const CollectionSelector = () => {
     setSelectedKanjiCollection,
     selectedKanjiSets,
     clearKanjiObjs,
-    clearKanjiSets
+    clearKanjiSets,
+    selectedGameModeKanji,
+    setSelectedGameModeKanji
   } = useKanjiStore();
 
   // Vocab store
@@ -69,7 +73,9 @@ const CollectionSelector = () => {
     setSelectedVocabCollection,
     selectedVocabSets,
     clearVocabObjs,
-    clearVocabSets
+    clearVocabSets,
+    selectedGameModeVocab,
+    setSelectedGameModeVocab
   } = useVocabStore();
 
   // Current content type values
@@ -81,6 +87,14 @@ const CollectionSelector = () => {
     : setSelectedVocabCollection;
   const selectedSets = isKanji ? selectedKanjiSets : selectedVocabSets;
   const sets = isKanji ? KANJI_SETS : VOCAB_SETS;
+
+  // Game mode values
+  const selectedGameMode = isKanji
+    ? selectedGameModeKanji
+    : selectedGameModeVocab;
+  const setSelectedGameMode = isKanji
+    ? setSelectedGameModeKanji
+    : setSelectedGameModeVocab;
 
   const handleClear = () => {
     playClick();
@@ -125,10 +139,12 @@ const CollectionSelector = () => {
     });
   }, [sets]);
 
+  const gameModes = ['Pick', 'Anti-Pick', 'Type'];
+
   return (
     <div className='flex flex-col'>
       {/* Modern Toggle-Style Unit Selector */}
-      <div className='flex rounded-tl-2xl rounded-tr-2xl bg-[var(--card-color)] border-b-1 border-[var(--border-color)] p-1.5 gap-1.5 flex-col md:flex-row'>
+      <div className='flex rounded-tl-2xl rounded-tr-2xl bg-[var(--card-color)] border-b-1 border-[var(--border-color)] p-2 gap-1.5 flex-col md:flex-row'>
         {collections.map(collection => {
           const isSelected = collection.name === selectedCollection;
 
@@ -180,7 +196,7 @@ const CollectionSelector = () => {
       {/* Selected Sets Info & Clear Button */}
       <div
         className={clsx(
-          'rounded-bl-2xl rounded-br-2xl bg-[var(--card-color)] p-4',
+          'bg-[var(--card-color)] p-5 border-b-1 border-[var(--border-color)]',
           'w-full text-lg flex flex-col gap-2 items-start'
         )}
       >
@@ -208,6 +224,70 @@ const CollectionSelector = () => {
         >
           <Trash size={32} />
         </button>
+      </div>
+
+      {/* Game Modes Section */}
+      <div className='flex rounded-bl-2xl rounded-br-2xl bg-[var(--card-color)] p-2 gap-1.5 flex-col md:flex-row'>
+        {gameModes.map(gameMode => {
+          const isSelected = gameMode === selectedGameMode;
+
+          return (
+            <button
+              key={gameMode}
+              onClick={() => {
+                playClick();
+                setSelectedGameMode(gameMode);
+              }}
+              className={clsx(
+                'relative flex-1 px-4 py-3 rounded-2xl transition-colors duration-0',
+                'flex flex-col items-center justify-center gap-2',
+                isSelected
+                  ? 'bg-[var(--main-color)]/80 text-[var(--background-color)] shadow-sm border-b-4'
+                  : 'text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
+              )}
+              style={
+                isSelected
+                  ? { borderColor: mainBorderColor || undefined }
+                  : undefined
+              }
+            >
+              <div className='flex items-center gap-2'>
+                <span className='text-lg font-medium'>{gameMode}</span>
+                {gameMode.toLowerCase() === 'pick' && (
+                  <MousePointerClick
+                    size={20}
+                    className={clsx(
+                      isSelected
+                        ? 'text-[var(--background-color)]'
+                        : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                    )}
+                  />
+                )}
+                {gameMode.toLowerCase() === 'anti-pick' && (
+                  <MousePointerClick
+                    size={20}
+                    className={clsx(
+                      'scale-x-[-1]',
+                      isSelected
+                        ? 'text-[var(--background-color)]'
+                        : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                    )}
+                  />
+                )}
+                {gameMode.toLowerCase() === 'type' && (
+                  <Keyboard
+                    size={20}
+                    className={clsx(
+                      isSelected
+                        ? 'text-[var(--background-color)]'
+                        : 'text-[var(--main-color)] motion-safe:animate-pulse'
+                    )}
+                  />
+                )}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
