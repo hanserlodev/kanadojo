@@ -60,19 +60,26 @@ const DojoMenu = () => {
       >
         <Banner />
 
-        <Info />
-        {(pathWithoutLocale === '/kanji' ||
-          pathWithoutLocale === '/vocabulary') && <CollectionSelector />}
-        <TopBar currentDojo={pathWithoutLocale.slice(1)} />
-        {showGameModes && pathWithoutLocale === '/kana' && <GameModes />}
-
         {pathWithoutLocale === '/kana' ? (
-          <KanaCards />
+          <div className='flex flex-col gap-3'>
+            <Info />
+            {showGameModes && <GameModes />}
+            <KanaCards />
+          </div>
         ) : pathWithoutLocale === '/kanji' ? (
-          <KanjiCards />
+          <div className='flex flex-col gap-3'>
+            <Info />
+            <CollectionSelector />
+            <KanjiCards />
+          </div>
         ) : pathWithoutLocale === '/vocabulary' ? (
-          <VocabCards />
+          <div className='flex flex-col gap-3'>
+            <Info />
+            <CollectionSelector />
+            <VocabCards />
+          </div>
         ) : null}
+        <TopBar currentDojo={pathWithoutLocale.slice(1)} />
       </div>
     </div>
   );
