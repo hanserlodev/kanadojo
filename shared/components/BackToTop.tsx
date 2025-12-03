@@ -60,7 +60,9 @@ export default function BackToTop() {
     <button
       onClick={handleClick}
       className={clsx(
-        'fixed z-[60] right-2 bottom-18 sm:right-7 lg:bottom-9 max-lg:border-1 border-[var(--border-color)]',
+        'fixed z-[60] right-2 lg:right-7',
+        'max-lg:top-2 lg:bottom-9',
+        'max-lg:border-1 border-[var(--border-color)]',
         'inline-flex items-center justify-center rounded-full ',
         'p-2 md:p-3 shadow-lg transition-all duration-200 ',
         'bg-[var(--card-color)] text-[var(--main-color)] ',

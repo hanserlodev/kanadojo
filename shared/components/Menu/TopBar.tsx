@@ -212,7 +212,8 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
                       'w-full h-12 px-4 flex flex-row justify-center items-center gap-2',
                       'bg-[var(--secondary-color)] text-[var(--background-color)]',
                       'rounded-2xl transition-colors duration-200',
-                      'border-b-6 shadow-sm'
+                      'border-b-6 shadow-sm',
+                      'hover:cursor-pointer'
                     )}
                     style={{ borderColor: secondaryBorderColor || undefined }}
                     onClick={() => playClick()}
@@ -232,6 +233,7 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
                     'w-full h-12 px-6 flex flex-row justify-center items-center gap-2',
                     'rounded-2xl transition-colors duration-200',
                     'font-medium border-b-6 shadow-sm',
+                    'hover:cursor-pointer',
                     selectedGameMode && isFilled
                       ? 'bg-[var(--main-color)] text-[var(--background-color)]'
                       : 'bg-[var(--card-color)] text-[var(--border-color)] cursor-not-allowed'
@@ -246,7 +248,7 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
                     playClick();
                   }}
                 >
-                  <span className=''>Start Training</span>
+                  <span className='whitespace-nowrap'>Start Training</span>
                   <Play
                     className={clsx(
                       selectedGameMode && isFilled && 'fill-current'
